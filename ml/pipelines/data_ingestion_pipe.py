@@ -11,6 +11,7 @@ import sys
 import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from steps.data_ingestion import step_data_ingestion, step_data_join, step_electrical_data_cleaning, step_thermal_data_cleaning
 
 # individual thermal and electrical data ingestion pipeline
