@@ -1,7 +1,7 @@
 # data selection from cleaned experimental data and prepare for further data analysis and ML
 
 import pandas as pd
-import sys
+import sys, os
 from typing import Annotated, Tuple
 from zenml import step
 
@@ -108,6 +108,29 @@ class DataProcessingEngine:
 
         return df_database
     
+    def database_to_csv(self, df_database:pd.DataFrame, op_path:str):
+        """
+        to save database to csv (local)
+
+        args:
+            df_database: pd.DataFrame
+            op_path: str
+
+        returns:
+            csv
+        """
+        # Directory and file path
+        directory = os.path.join(op_path, 'database')
+        file_path = os.path.join(op_path, directory, 'database.csv')
+
+        # Check if directory exists and create it if not
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        # Save the DataFrame to a CSV file in the specified directory
+        df_database.to_csv(file_path, index=False)
+        return None
+
 
 @step
 def step_initialize_DPE(dir_path:str)->Annotated[DataProcessingEngine, 'Data Processing Engine']:
@@ -133,3 +156,9 @@ def step_database(dpe:DataProcessingEngine,
                   df_raw:pd.DataFrame)->Annotated[pd.DataFrame, 'Experimental DataBase']:
     df_database = dpe.data_slicing_combine(df_meta=df_meta, df_raw_data=df_raw, col_start='dt_start', col_stop='dt_stop')
     return df_database
+
+@step
+def step_database_csv(dpe:DataProcessingEngine,
+                      df_database:pd.DataFrame)->Annotated[None, 'Saved CSV locally']:
+    dpe.database_to_csv(df_database=df_database, op_path=dpe.dir_path)
+    return None
