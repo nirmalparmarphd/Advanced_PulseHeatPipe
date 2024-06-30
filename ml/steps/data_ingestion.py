@@ -9,9 +9,9 @@ from zenml import step
 import glob
 
 
-class DataIngestion:
+class DataIngestionEngine:
     """
-    DataIngestion is used for various methods as mentioned below
+    DataIngestionEngine is used for data ingestion - various methods as mentioned below
 
         # get a list of each experimental files
     
@@ -28,7 +28,7 @@ class DataIngestion:
 
     def __init__(self, data_directory:str='../data/'):
         """
-        initialization of the class DataIngestion
+        initialization of the class DataIngestionEngine
 
         Arg:
             data_directory:str
@@ -164,21 +164,22 @@ class DataIngestion:
         df_join.rename(columns=lambda x: x.replace('-', '_'), inplace=True)
         df_join.dropna(axis=1, how='all', inplace=True)
         df_join.dropna(axis=0, inplace=True)
-        df_join.fillna(0)
+        df_join.fillna(0, inplace=True)
+        df_join.drop_duplicates(inplace=True)
         return df_join
 
 @step
-def step_initialization(path:str)->Annotated[DataIngestion, 'Data Ingestion Engine']:
-    ig = DataIngestion(data_directory=path)
+def step_initialization_DIE(path:str)->Annotated[DataIngestionEngine, 'Data Ingestion Engine']:
+    ig = DataIngestionEngine(data_directory=path)
     return ig
 
 @step 
-def step_get_file_list(di:DataIngestion)->Annotated[list, 'List of Experimental Files']:
+def step_get_file_list(di:DataIngestionEngine)->Annotated[list, 'List of Experimental Files']:
     file_list = di.get_list_files()
     return file_list
 
 @step
-def step_data_ingestion(file_list:list, di:DataIngestion)->Tuple[Annotated[pd.DataFrame, 'RAW Data Thermal'],
+def step_data_ingestion(file_list:list, di:DataIngestionEngine)->Tuple[Annotated[pd.DataFrame, 'RAW Data Thermal'],
                                                         Annotated[pd.DataFrame, 'Raw Data Electrical']]:
     df_t = []
     df_e = []
@@ -192,21 +193,21 @@ def step_data_ingestion(file_list:list, di:DataIngestion)->Tuple[Annotated[pd.Da
     return df_thermal_combined, df_electrical_combined
 
 @step
-def step_thermal_data_dt_process(df_thermal:pd.DataFrame, di:DataIngestion)->Annotated[pd.DataFrame,'Thermal Data - DT Process']:
+def step_thermal_data_dt_process(df_thermal:pd.DataFrame, di:DataIngestionEngine)->Annotated[pd.DataFrame,'Thermal Data - DT Process']:
     df_ = di.processing_date_time(df=df_thermal)
     return df_
 
 @step
-def step_electrical_data_dt_process(df_electrical:pd.DataFrame, di:DataIngestion)->Annotated[pd.DataFrame,'Electrical Data - DT Process']:
+def step_electrical_data_dt_process(df_electrical:pd.DataFrame, di:DataIngestionEngine)->Annotated[pd.DataFrame,'Electrical Data - DT Process']:
     df_ = di.processing_date_time(df=df_electrical)
     return df_
 
 @step
-def step_data_join(df_thermal:pd.DataFrame, df_electrical:pd.DataFrame, di:DataIngestion)->Annotated[pd.DataFrame, 'Joined Data']:
+def step_data_join(df_thermal:pd.DataFrame, df_electrical:pd.DataFrame, di:DataIngestionEngine)->Annotated[pd.DataFrame, 'Joined Data']:
     df_join = di.join_thermal_electrical_df(df_thermal=df_thermal, df_electrical=df_electrical)
     return df_join
 
 @step
-def step_cleaning_data(df_join:pd.DataFrame, di:DataIngestion)->Annotated[pd.DataFrame, 'Cleaning Joined Data']:
+def step_cleaning_data(df_join:pd.DataFrame, di:DataIngestionEngine)->Annotated[pd.DataFrame, 'Cleaning Joined Data']:
     df_join_clean = di.cleaning_data(df_join=df_join)
     return df_join_clean 
