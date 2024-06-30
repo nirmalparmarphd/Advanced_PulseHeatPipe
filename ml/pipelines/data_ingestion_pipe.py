@@ -21,11 +21,12 @@ from steps.data_ingestion import (step_data_ingestion,
                                   step_initialization_DIE,
                                   step_cleaning_data)
 
-from steps.data_selection import (step_database,
+from steps.data_processing import (step_database,
                                   step_initialize_DPE,
                                   step_loading_meta_table,
                                   step_meta_data_dt_process,
-                                  step_database_csv)
+                                  step_database_csv,
+                                  step_stat_cols)
 
 # individual thermal and electrical data ingestion pipeline
 @pipeline(enable_cache=False)
@@ -47,5 +48,6 @@ def database_generation_pipeline(dir_path):
     df_meta = step_loading_meta_table(dpe=dpe)
     df_meta_processed = step_meta_data_dt_process(dpe=dpe,df_meta=df_meta)
     df_database = step_database(dpe=dpe, df_meta=df_meta_processed, df_raw=df_raw_data)
-    step_database_csv(dpe=dpe, df_database=df_database)
-    return df_database
+    df_database_ = step_stat_cols(dpe=dpe, df_database=df_database)
+    step_database_csv(dpe=dpe, df_database=df_database_)
+    return df_database_

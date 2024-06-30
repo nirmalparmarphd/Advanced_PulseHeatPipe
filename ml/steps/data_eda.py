@@ -13,4 +13,16 @@ class DataVisualizationEngine:
     # Q vs TR @ FR, A, B
     """
 
+    def __init__(self, dir_path: str):
+        """
+        to initialize data visualization engine
+
+        args:
+            dir_path: str '../data/'
+
+        returns:
+            None
+        """
+        self.dir_path = dir_path
+
     

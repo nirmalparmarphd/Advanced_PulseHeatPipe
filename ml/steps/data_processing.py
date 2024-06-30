@@ -130,7 +130,27 @@ class DataProcessingEngine:
         # Save the DataFrame to a CSV file in the specified directory
         df_database.to_csv(file_path, index=False)
         return None
+    
+    def adding_stat_cols(self, df_database:pd.DataFrame, col_c:list=['TC_6','TC_7','TC_8', 'TC_9'], 
+                                                col_e:list=['TC_1', 'TC_2', 'TC_3', 'TC_4', 'TC_5']):
+        """
+        adding mean and std cols for temperature
 
+        args:
+            df_database:pd.DataFrame, 
+            col_c:list=['TC_6','TC_7','TC_8', 'TC_9'], 
+            col_e:list=['TC_1', 'TC_2', 'TC_3', 'TC_4', 'TC_5']
+            
+        returns:
+            pd.DataFrame
+        """
+        df = df_database
+        df['Te_mean[C]'] = df[col_e].mean(axis=1)
+        df['Tc_mean[C]'] = df[col_c].mean(axis=1)
+        df['Te_std[C]'] = df[col_e].std(axis=1)
+        df['Tc_std[C]'] = df[col_c].std(axis=1)
+
+        return df
 
 @step
 def step_initialize_DPE(dir_path:str)->Annotated[DataProcessingEngine, 'Data Processing Engine']:
@@ -156,6 +176,12 @@ def step_database(dpe:DataProcessingEngine,
                   df_raw:pd.DataFrame)->Annotated[pd.DataFrame, 'Experimental DataBase']:
     df_database = dpe.data_slicing_combine(df_meta=df_meta, df_raw_data=df_raw, col_start='dt_start', col_stop='dt_stop')
     return df_database
+
+@step
+def step_stat_cols(dpe:DataProcessingEngine,
+                   df_database:pd.DataFrame)-> Annotated[pd.DataFrame, 'DataBase with Statistical Features']:
+    df_databse_ = dpe.adding_stat_cols(df_database=df_database)
+    return df_databse_
 
 @step
 def step_database_csv(dpe:DataProcessingEngine,
