@@ -13,6 +13,8 @@ class DataProcessingEngine:
 
     # slicing data as per meta table and make a experimental database
 
+    # removing garbage data from failed experiments, threshold 1000
+
     # data standardization
 
     # processing categorical data
@@ -151,6 +153,32 @@ class DataProcessingEngine:
         df['Tc_std[C]'] = df[col_c].std(axis=1)
 
         return df
+    
+    def removing_garbage_data(self, 
+                              df_database:pd.DataFrame,
+                              threshold:int=1000):
+        """
+        dropping experimental garbage data. dropping datasets with less then 1000 entries 
+
+        args:
+            df_database: pd.DataFrame
+            threshold: int = 1000
+        
+        returns:
+            df: pd.DataFrame
+        """
+        # value counts for fr and q
+        df_values = pd.DataFrame(df_database[['Q[W]', 'FR[%]']].value_counts()).reset_index()
+        values = values[values['count'] < threshold]
+
+        for _, i in values.iterrows():
+            q = i['Q[W]']
+            fr = i['FR[%]']
+            indices_to_drop = df_database[(df_database['Q[W]'!= q]) & (df_database['Q[W]'!= fr])].index
+            df_out = df_database.drop(indices_to_drop)
+
+        return df_out
+
 
 @step
 def step_initialize_DPE(dir_path:str)->Annotated[DataProcessingEngine, 'Data Processing Engine']:
@@ -182,6 +210,12 @@ def step_stat_cols(dpe:DataProcessingEngine,
                    df_database:pd.DataFrame)-> Annotated[pd.DataFrame, 'DataBase with Statistical Features']:
     df_databse_ = dpe.adding_stat_cols(df_database=df_database)
     return df_databse_
+
+@step
+def step_dropping_garbage_date(dpe:DataProcessingEngine,
+                               df_database:pd.DataFrame)->Annotated[pd.DataFrame, 'Removing Garbage']:
+    df_database_f = dpe.removing_garbage_data(df_database=df_database)
+    return df_database_f
 
 @step
 def step_database_csv(dpe:DataProcessingEngine,
