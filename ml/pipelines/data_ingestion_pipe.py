@@ -26,7 +26,8 @@ from steps.data_processing import (step_database,
                                   step_loading_meta_table,
                                   step_meta_data_dt_process,
                                   step_database_csv,
-                                  step_stat_cols)
+                                  step_stat_cols,
+                                  step_dropping_garbage_date)
 
 # individual thermal and electrical data ingestion pipeline
 @pipeline(enable_cache=False)
@@ -49,5 +50,14 @@ def database_generation_pipeline(dir_path):
     df_meta_processed = step_meta_data_dt_process(dpe=dpe,df_meta=df_meta)
     df_database = step_database(dpe=dpe, df_meta=df_meta_processed, df_raw=df_raw_data)
     df_database_ = step_stat_cols(dpe=dpe, df_database=df_database)
-    step_database_csv(dpe=dpe, df_database=df_database_)
+    df_database_f = step_dropping_garbage_date(dpe=dpe, df_database=df_database_)
+    step_database_csv(dpe=dpe, df_database=df_database_f)
     return df_database_
+
+# data visualization pipeline
+
+# data pre-processing pipeline
+
+# ml pipeline
+
+# ml evaluation pipeline

@@ -167,17 +167,23 @@ class DataProcessingEngine:
         returns:
             df: pd.DataFrame
         """
-        # value counts for fr and q
-        df_values = pd.DataFrame(df_database[['Q[W]', 'FR[%]']].value_counts()).reset_index()
-        values = values[values['count'] < threshold]
-
-        for _, i in values.iterrows():
-            q = i['Q[W]']
-            fr = i['FR[%]']
-            indices_to_drop = df_database[(df_database['Q[W]'!= q]) & (df_database['Q[W]'!= fr])].index
-            df_out = df_database.drop(indices_to_drop)
-
-        return df_out
+        # Calculate value counts for 'Q[W]' and 'FR[%]'
+        df_values = df_database[['Q[W]', 'FR[%]']].value_counts().reset_index(name='count')
+        
+        # Filter out the values below the threshold
+        values_to_drop = df_values[df_values['count'] < threshold]
+        
+        # Initialize the filtered dataframe
+        filtered_df = df_database.copy()
+        
+        # Drop the rows where 'Q[W]' and 'FR[%]' match the values below the threshold
+        for _, row in values_to_drop.iterrows():
+            q = row['Q[W]']
+            fr = row['FR[%]']
+            indices_to_drop = filtered_df[(filtered_df['Q[W]'] == q) & (filtered_df['FR[%]'] == fr)].index
+            filtered_df = filtered_df.drop(indices_to_drop)
+        
+        return filtered_df
 
 
 @step
