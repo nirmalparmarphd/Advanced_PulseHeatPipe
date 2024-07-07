@@ -15,10 +15,7 @@ class DataProcessingEngine:
 
     # removing garbage data from failed experiments, threshold 1000
 
-    # data standardization
-
-    # processing categorical data
-
+    # calculating TR and other Thermal params with the help of PyPulseHeatPipe library
     
     """
     def __init__(self, dir_path: str):
