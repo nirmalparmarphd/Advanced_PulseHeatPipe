@@ -24,6 +24,8 @@ class DataIngestionEngine:
         # join thermal and electrical data on date-time cols
 
         # combine all experimental data to create a database
+
+        # NOTE: Please add '_T_' and '_E_' in the raw data file naming.
     """
 
     def __init__(self, data_directory:str='../data/'):
