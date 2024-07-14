@@ -29,6 +29,14 @@ from steps.data_processing import (step_database,
                                   step_stat_cols,
                                   step_dropping_garbage_date)
 
+from steps.data_eda import (plot_dG_vs_P,
+                            plot_dG_vs_Te,
+                            plot_dG_vs_TR,
+                            plot_P_vs_Te,
+                            plot_Tc_vs_Te,
+                            plot_TR_vs_Q,
+                            plot_TR_vs_Te,)
+
 # individual thermal and electrical data ingestion pipeline
 @pipeline(enable_cache=False)
 def data_ingestion_pipeline(dir_path):
@@ -55,6 +63,17 @@ def database_generation_pipeline(dir_path):
     return df_database_
 
 # data visualization pipeline
+@pipeline(enable_cache=False)
+def auto_eda_plots(dir_path):
+    database = client.get_artifact('Removing Garbage').load()
+    plot_dG_vs_P(data=database, dir_path=dir_path, sample='DI_Water')
+    plot_dG_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
+    plot_dG_vs_TR(data=database, dir_path=dir_path, sample='DI_Water')
+    plot_P_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
+    plot_Tc_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
+    plot_TR_vs_Q(data=database, dir_path=dir_path, sample='DI_Water')
+    plot_TR_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
+    return None
 
 # data pre-processing pipeline
 
