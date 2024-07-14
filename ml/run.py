@@ -13,9 +13,9 @@ def main_pipeline(path:str = '../data/'):
     data_ingestion = data_ingestion_pipeline(dir_path=path)
 
     # with help of the experimental metal table selecting/filtering data, combining, and cleaning
-    database_generation = database = database_generation_pipeline(dir_path=path)
-    
-    # auto generation of plots for selected thermal properties
+    database_generation = database_generation_pipeline(dir_path=path)
+
+    # auto generation of plots for selected thermal properties using PyPulseHeatPipe
 
     # data pre-processing before ML
 
