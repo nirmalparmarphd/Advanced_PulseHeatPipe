@@ -4,6 +4,7 @@ import pandas as pd
 import sys, os
 from typing import Annotated, Tuple
 from zenml import step
+from PyPulseHeatPipe import PulseHeatPipe
 
 class DataProcessingEngine:
     """
@@ -181,8 +182,94 @@ class DataProcessingEngine:
             filtered_df = filtered_df.drop(indices_to_drop)
         
         return filtered_df
+    
+    def get_si_units(self,
+                     database:pd.DataFrame,
+                     sample:str = 'DI_Water'):
+        """
+        Convert to SI units
 
+        args:
+            database:pd.DataFrame,
+            sample:str = 'DI_Water'
 
+        returns:
+            pd.DataFrame
+        """
+        analysis = PulseHeatPipe(dir_path=self.dir_path, sample=sample)
+        data = analysis.convert_to_si(df=database)
+        return data
+
+    def get_absolute_pressure(self,
+                              database: pd.DataFrame,
+                              P_out_col: str = 'P[bar]',
+                              P_col:str = 'PRESSURE'
+                              ):
+        """
+        to calculate absolute pressure
+
+        args:
+            database: pd.DataFrame,
+            P_out_col: str = 'P[bar]'
+            P_col: str
+
+        returns:
+            pd.DataFrame
+        """
+        database[P_out_col] = database[P_col] + 1.013
+        return database
+
+    def get_thermal_resistance(self,
+                               data:pd.DataFrame,
+                               T_e: str = 'Te_mean[K]',
+                               T_c: str = 'Tc_mean[K]',
+                               Q_c: str = 'Q[W]',
+                               sample: str = 'DI_Water',
+                               TR_out: str = 'TR[K/W]'):
+        """
+        to calculate thermal resistance
+
+        args:
+            data:pd.DataFrame,
+            T_e: str = 'Te_mean[K]',
+            T_c: str = 'Tc_mean[K]',
+            Q_c: str = 'Q[W]'
+            sample: str = 'DI_Water',
+            TR_out: str = 'TR[K/W]'
+            
+        returns:
+            pd.DataFrame
+
+        """
+        analysis = PulseHeatPipe(dir_path=self.dir_path, sample=sample)
+        data = analysis.compute_thermal_resistance(data=data,
+                                                   T_condenser_col=T_c,
+                                                   T_evaporator_col=T_e,
+                                                   Q_heat_col=Q_c,
+                                                   TR_output_col=TR_out)
+        return data
+
+    def get_gfe(self,
+                database: pd.DataFrame,
+                sample: str = 'DI_Water'):
+        """
+        to calculate the gibbs free energy
+
+        args:
+            database: pd.DataFrame,
+            sample: str = 'DI_Water'
+
+        returns:
+            pd.DataFrame
+        """
+        analysis = PulseHeatPipe(dir_path=self.dir_path, sample=sample)
+        database = analysis.compute_gibbs_free_energy(data=database,
+                                                      T_evaporator_col='Te_mean[K]',
+                                                      T_condenser_col='Tc_mean[K]',
+                                                      P_bar='P[bar]',
+                                                      to_csv=False)
+        return database
+    
 @step
 def step_initialize_DPE(dir_path:str)->Annotated[DataProcessingEngine, 'Data Processing Engine']:
     dpe = DataProcessingEngine(dir_path=dir_path)
@@ -219,6 +306,30 @@ def step_dropping_garbage_date(dpe:DataProcessingEngine,
                                df_database:pd.DataFrame)->Annotated[pd.DataFrame, 'Removing Garbage']:
     df_database_f = dpe.removing_garbage_data(df_database=df_database)
     return df_database_f
+
+@step
+def step_to_abs_pressure(dpe:DataProcessingEngine,
+                         database:pd.DataFrame)->Annotated[pd.DataFrame, 'Added Absolute Pressure']:
+    df_database = dpe.get_absolute_pressure(database=database, P_out_col='P[bar]', P_col='PRESSURE')
+    return df_database
+
+@step
+def step_to_si_units(dpe:DataProcessingEngine,
+                     database:pd.DataFrame)->Annotated[pd.DataFrame, 'Converted to SI Units']:
+    df_database = dpe.get_si_units(database=database, sample='DI_Water')
+    return df_database
+
+@step
+def step_TR_calculation(dpe:DataProcessingEngine,
+                        database:pd.DataFrame)->Annotated[pd.DataFrame, 'Calculating Thermal Resistance']:
+    df_database = dpe.get_thermal_resistance(data=database)
+    return df_database
+
+@step
+def step_gfe_calculation(dpe:DataProcessingEngine,
+                         database:pd.DataFrame)->Annotated[pd.DataFrame, 'Calculating Gibbs Free Energy']:
+    df_database = dpe.get_gfe(database=database, sample='DI_Water')
+    return df_database
 
 @step
 def step_database_csv(dpe:DataProcessingEngine,

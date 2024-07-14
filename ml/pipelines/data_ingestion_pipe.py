@@ -27,7 +27,11 @@ from steps.data_processing import (step_database,
                                   step_meta_data_dt_process,
                                   step_database_csv,
                                   step_stat_cols,
-                                  step_dropping_garbage_date)
+                                  step_dropping_garbage_date,
+                                  step_gfe_calculation,
+                                  step_to_abs_pressure,
+                                  step_to_si_units,
+                                  step_TR_calculation)
 
 from steps.data_eda import (plot_dG_vs_P,
                             plot_dG_vs_Te,
@@ -59,7 +63,11 @@ def database_generation_pipeline(dir_path):
     df_database = step_database(dpe=dpe, df_meta=df_meta_processed, df_raw=df_raw_data)
     df_database_ = step_stat_cols(dpe=dpe, df_database=df_database)
     df_database_f = step_dropping_garbage_date(dpe=dpe, df_database=df_database_)
-    step_database_csv(dpe=dpe, df_database=df_database_f)
+    df_database = step_to_abs_pressure(dpe=dpe, database=df_database_f)
+    df_database = step_to_si_units(dpe=dpe, database=df_database)
+    df_database = step_TR_calculation(dpe=dpe, database=df_database)
+    df_database = step_gfe_calculation(dpe=dpe, database=df_database)
+    step_database_csv(dpe=dpe, df_database=df_database)
     return df_database_
 
 # data visualization pipeline
