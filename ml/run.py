@@ -1,6 +1,6 @@
 # to run all ML pipelines
 
-from pipelines.data_ingestion_pipe import data_ingestion_pipeline, database_generation_pipeline, auto_eda_plots
+from Advanced_PulseHeatPipe.ml.pipelines.data_ingestion_processing_eda_pipe import data_ingestion_pipeline, database_generation_pipeline, auto_eda_plots
 
 from zenml import pipeline
 import sys, os
