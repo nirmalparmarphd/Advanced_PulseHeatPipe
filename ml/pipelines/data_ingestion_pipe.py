@@ -56,7 +56,7 @@ def data_ingestion_pipeline(dir_path):
 # meta table ingestion and experimental database creation
 @pipeline(enable_cache=False)
 def database_generation_pipeline(dir_path, database):
-    # df_raw_data = client.get_artifact_version('Cleaning Joined Data').load()
+    # df_raw_database = client.get_artifact_version('Cleaning Joined Data').load()
     dpe = step_initialize_DPE(dir_path)
     df_meta = step_loading_meta_table(dpe=dpe)
     df_meta_processed = step_meta_data_dt_process(dpe=dpe,df_meta=df_meta)
@@ -74,14 +74,14 @@ def database_generation_pipeline(dir_path, database):
 @pipeline(enable_cache=False)
 def auto_eda_plots(dir_path, database):
     database = client.get_artifact_version('Calculating Gibbs Free Energy').load()
-    plot_dG_vs_P(data=database, dir_path=dir_path, sample='DI_Water')
-    plot_dG_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
-    plot_dG_vs_TR(data=database, dir_path=dir_path, sample='DI_Water')
-    plot_P_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
-    plot_Tc_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
-    plot_TR_vs_Q(data=database, dir_path=dir_path, sample='DI_Water')
-    plot_TR_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
-    return None
+    database = plot_dG_vs_P(data=database, dir_path=dir_path, sample='DI_Water')
+    database = plot_dG_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
+    database = plot_dG_vs_TR(data=database, dir_path=dir_path, sample='DI_Water')
+    database = plot_P_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
+    database = plot_Tc_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
+    database = plot_TR_vs_Q(data=database, dir_path=dir_path, sample='DI_Water')
+    database = plot_TR_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
+    return database
 
 # data pre-processing pipeline
 
