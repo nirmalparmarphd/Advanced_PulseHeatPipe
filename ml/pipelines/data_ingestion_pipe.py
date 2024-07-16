@@ -55,12 +55,12 @@ def data_ingestion_pipeline(dir_path):
 
 # meta table ingestion and experimental database creation
 @pipeline(enable_cache=False)
-def database_generation_pipeline(dir_path):
-    df_raw_data = client.get_artifact_version('Cleaning Joined Data').load()
+def database_generation_pipeline(dir_path, database):
+    # df_raw_data = client.get_artifact_version('Cleaning Joined Data').load()
     dpe = step_initialize_DPE(dir_path)
     df_meta = step_loading_meta_table(dpe=dpe)
     df_meta_processed = step_meta_data_dt_process(dpe=dpe,df_meta=df_meta)
-    df_database = step_database(dpe=dpe, df_meta=df_meta_processed, df_raw=df_raw_data)
+    df_database = step_database(dpe=dpe, df_meta=df_meta_processed, df_raw=database)
     df_database_ = step_stat_cols(dpe=dpe, df_database=df_database)
     df_database_f = step_dropping_garbage_date(dpe=dpe, df_database=df_database_)
     df_database = step_to_abs_pressure(dpe=dpe, database=df_database_f)
@@ -72,8 +72,8 @@ def database_generation_pipeline(dir_path):
 
 # data visualization pipeline
 @pipeline(enable_cache=False)
-def auto_eda_plots(dir_path):
-    database = client.get_artifact('Removing Garbage').load()
+def auto_eda_plots(dir_path, database):
+    database = client.get_artifact_version('Calculating Gibbs Free Energy').load()
     plot_dG_vs_P(data=database, dir_path=dir_path, sample='DI_Water')
     plot_dG_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
     plot_dG_vs_TR(data=database, dir_path=dir_path, sample='DI_Water')

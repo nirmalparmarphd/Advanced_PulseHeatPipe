@@ -42,7 +42,7 @@ class DataVisualizationEngine:
         else:
             print(f"Directory '{path}' already exists.")
 
-        self.dv = DataVisualizationEngine(dir_path=path,
+        self.dv = DataVisualization(dir_path=path,
                                      sample=sample)
         
         # further data filter for plots at specific conditions
@@ -91,7 +91,7 @@ def plot_Tc_vs_Te(data: pd.DataFrame,
                         save_figure: bool = True,
                         dir_path: str = '../data',
                         sample: str = 'DI_Water'
-                    )->Annotated[str, 'Auto Plotting of Tc vs Te']:
+                    )->Annotated[None, 'Auto Plotting of Tc vs Te']:
     dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
@@ -112,7 +112,7 @@ def plot_P_vs_Te(data: pd.DataFrame,
                         save_figure: bool = True,
                         dir_path: str = '../data',
                         sample: str = 'DI_Water'
-                    )->Annotated[str, 'Auto Plotting of P vs Te']:
+                    )->Annotated[None, 'Auto Plotting of P vs Te']:
     dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
@@ -133,7 +133,7 @@ def plot_TR_vs_Te(data: pd.DataFrame,
                         save_figure: bool = True,
                         dir_path: str = '../data',
                         sample: str = 'DI_Water'
-                    )->Annotated[str, 'Auto Plotting of TR vs Te']:
+                    )->Annotated[None, 'Auto Plotting of TR vs Te']:
     dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
@@ -154,7 +154,7 @@ def plot_TR_vs_Q(data: pd.DataFrame,
                         save_figure: bool = True,
                         dir_path: str = '../data',
                         sample: str = 'DI_Water'
-                    )->Annotated[str, 'Auto Plotting of TR vs Q']:
+                    )->Annotated[None, 'Auto Plotting of TR vs Q']:
     dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
@@ -175,7 +175,7 @@ def plot_dG_vs_Te(data: pd.DataFrame,
                         save_figure: bool = True,
                         dir_path: str = '../data',
                         sample: str = 'DI_Water'
-                    )->Annotated[str, 'Auto Plotting of dG vs Te']:
+                    )->Annotated[None, 'Auto Plotting of dG vs Te']:
     dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
@@ -196,7 +196,7 @@ def plot_dG_vs_P(data: pd.DataFrame,
                         save_figure: bool = True,
                         dir_path: str = '../data',
                         sample: str = 'DI_Water'
-                    )->Annotated[str, 'Auto Plotting of dG vs P']:
+                    )->Annotated[None, 'Auto Plotting of dG vs P']:
     dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
@@ -217,7 +217,7 @@ def plot_dG_vs_TR(data: pd.DataFrame,
                         save_figure: bool = True,
                         dir_path: str = '../data',
                         sample: str = 'DI_Water'
-                    )->Annotated[str, 'Auto Plotting of dG vs TR']:
+                    )->Annotated[None, 'Auto Plotting of dG vs TR']:
     dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
