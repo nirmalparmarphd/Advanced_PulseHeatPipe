@@ -285,8 +285,7 @@ class DataProcessingEngine:
         returns:
             pd.DataFrame
         '''
-        database['pulse'] = pd.to_datetime(database['pulse'], format='%H:%M:%S')
-        database['TIME'] = pd.to_datetime(database['TIME'], format='%H:%M:%S')
+        database['TIME'] = pd.to_datetime(database['TIME'], format='%H:%M:%S').dt.time
 
         frames = []
         pulse_time = database['pulse'].unique()
@@ -332,6 +331,7 @@ def step_processing_dt_col_pulse(dpe:DataProcessingEngine,
                                            col='pulse',
                                            col_date='DATE',
                                            col_time='pulse')
+    database['pulse'] = database['pulse'].dt.time
     return database
 
 @step
@@ -379,5 +379,6 @@ def step_gfe_calculation(dpe:DataProcessingEngine,
 @step
 def step_database_csv(dpe:DataProcessingEngine,
                       df_database:pd.DataFrame)->Annotated[None, 'Saved CSV locally']:
+    df_database = df_database.round(2)
     dpe.database_to_csv(df_database=df_database, op_path=dpe.dir_path)
     return None
