@@ -5,6 +5,7 @@ import sys, os
 from typing import Annotated, Tuple
 from zenml import step
 from PyPulseHeatPipe import PulseHeatPipe
+import numpy as np
 
 class DataProcessingEngine:
     """
@@ -182,6 +183,7 @@ class DataProcessingEngine:
             fr = row['FR[%]']
             indices_to_drop = filtered_df[(filtered_df['Q[W]'] == q) & (filtered_df['FR[%]'] == fr)].index
             filtered_df = filtered_df.drop(indices_to_drop)
+            filtered_df.fillna(0, inplace=True)
         
         return filtered_df
     
@@ -272,6 +274,32 @@ class DataProcessingEngine:
                                                       to_csv=False)
         return database
     
+    def get_pulse_temperature(self,
+                              database: pd.DataFrame):
+        '''
+        to get a temperature at which pulsation starts
+
+        args:
+            database: pd.DataFrame
+
+        returns:
+            pd.DataFrame
+        '''
+        database['pulse'] = pd.to_datetime(database['pulse'], format='%H:%M:%S')
+        database['TIME'] = pd.to_datetime(database['TIME'], format='%H:%M:%S')
+
+        frames = []
+        pulse_time = database['pulse'].unique()
+        for time in pulse_time:
+            df_pt = database[database['TIME']==time]
+            Te_pt = df_pt['Te_mean[K]'].min()
+            db = database[database['pulse']==time]
+            db['T_pulse'] = Te_pt
+            frames.append(db)
+        db = pd.concat(frames, axis=0, ignore_index=True)
+        return db
+
+    
 @step
 def step_initialize_DPE(dir_path:str)->Annotated[DataProcessingEngine, 'Data Processing Engine']:
     dpe = DataProcessingEngine(dir_path=dir_path)
@@ -298,6 +326,15 @@ def step_database(dpe:DataProcessingEngine,
     return df_database
 
 @step
+def step_processing_dt_col_pulse(dpe:DataProcessingEngine,
+                                 df_database:pd.DataFrame)->Annotated[pd.DataFrame, 'Experimental DataBase with Pulse Col']:
+    database = dpe.processing_date_time(df=df_database,
+                                           col='pulse',
+                                           col_date='DATE',
+                                           col_time='pulse')
+    return database
+
+@step
 def step_stat_cols(dpe:DataProcessingEngine,
                    df_database:pd.DataFrame)-> Annotated[pd.DataFrame, 'DataBase with Statistical Features']:
     df_databse_ = dpe.adding_stat_cols(df_database=df_database)
@@ -320,6 +357,12 @@ def step_to_si_units(dpe:DataProcessingEngine,
                      database:pd.DataFrame)->Annotated[pd.DataFrame, 'Converted to SI Units']:
     df_database = dpe.get_si_units(database=database, sample='DI_Water')
     return df_database
+
+@step
+def step_adding_pulse_temp(dpe:DataProcessingEngine,
+                                 df_database:pd.DataFrame)->Annotated[pd.DataFrame, 'Experimental DataBase with Pulse Temperature']:
+    database = dpe.get_pulse_temperature(database=df_database)
+    return database
 
 @step
 def step_TR_calculation(dpe:DataProcessingEngine,

@@ -31,7 +31,9 @@ from steps.data_processing import (step_database,
                                   step_gfe_calculation,
                                   step_to_abs_pressure,
                                   step_to_si_units,
-                                  step_TR_calculation)
+                                  step_TR_calculation,
+                                  step_processing_dt_col_pulse,
+                                  step_adding_pulse_temp)
 
 from steps.data_eda import (plot_dG_vs_P,
                             plot_dG_vs_Te,
@@ -62,10 +64,12 @@ def database_generation_pipeline(dir_path, database):
     df_meta = step_loading_meta_table(dpe=dpe)
     df_meta_processed = step_meta_data_dt_process(dpe=dpe,df_meta=df_meta)
     df_database = step_database(dpe=dpe, df_meta=df_meta_processed, df_raw=database)
+    df_database = step_processing_dt_col_pulse(dpe=dpe, df_database=df_database)
     df_database_ = step_stat_cols(dpe=dpe, df_database=df_database)
     df_database_f = step_dropping_garbage_date(dpe=dpe, df_database=df_database_)
     df_database = step_to_abs_pressure(dpe=dpe, database=df_database_f)
     df_database = step_to_si_units(dpe=dpe, database=df_database)
+    df_database = step_adding_pulse_temp(dpe=dpe, df_database=df_database)
     df_database = step_TR_calculation(dpe=dpe, database=df_database)
     df_database = step_gfe_calculation(dpe=dpe, database=df_database)
     step_database_csv(dpe=dpe, df_database=df_database)
