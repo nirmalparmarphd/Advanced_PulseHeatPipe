@@ -45,7 +45,7 @@ from steps.data_eda import (plot_dG_vs_P,
                             get_optimal_TP)
 
 # individual thermal and electrical data ingestion pipeline
-@pipeline(enable_cache=False)
+@pipeline(enable_cache=False, name='DATA INGESTION PIPELINE')
 def data_ingestion_pipeline(dir_path):
     di = step_initialization_DIE(path=dir_path)
     file_list = step_get_file_list(di=di)
@@ -57,7 +57,7 @@ def data_ingestion_pipeline(dir_path):
     return df_join_clean
 
 # meta table ingestion and experimental database creation
-@pipeline(enable_cache=False)
+@pipeline(enable_cache=False, name='DATABASE GENERATION PIPELINE')
 def database_generation_pipeline(dir_path, database):
     # df_raw_database = client.get_artifact_version('Cleaning Joined Data').load()
     dpe = step_initialize_DPE(dir_path)
@@ -73,12 +73,12 @@ def database_generation_pipeline(dir_path, database):
     df_database = step_TR_calculation(dpe=dpe, database=df_database)
     df_database = step_gfe_calculation(dpe=dpe, database=df_database)
     step_database_csv(dpe=dpe, df_database=df_database)
-    return df_database_
+    return df_database
 
 # data visualization pipeline
-@pipeline(enable_cache=False)
+@pipeline(enable_cache=False, name='EDA PIPELINE')
 def auto_eda_plots(dir_path, database):
-    database = client.get_artifact_version('Calculating Gibbs Free Energy').load()
+    # database = client.get_artifact_version('Calculating Gibbs Free Energy').load()
     database = plot_dG_vs_P(data=database, dir_path=dir_path, sample='DI_Water')
     database = plot_dG_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
     database = plot_dG_vs_TR(data=database, dir_path=dir_path, sample='DI_Water')
