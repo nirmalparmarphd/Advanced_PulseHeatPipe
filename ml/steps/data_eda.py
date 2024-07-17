@@ -3,7 +3,7 @@
 from PyPulseHeatPipe import PulseHeatPipe, DataVisualization
 import pandas as pd
 from zenml import step
-from typing import Annotated, Tuple
+from typing import Annotated, AnyStr, Tuple
 import os
 
 class DataVisualizationEngine:
@@ -80,6 +80,45 @@ class DataVisualizationEngine:
                             figsize=figsize,
                             save_figure = save_figure)
         return print('completed auto plotting.')
+    
+    def get_optimal_TP(self,data:pd.DataFrame):
+        '''
+        to get best temperature pressure condition
+
+        args:
+            data: pd.DataFrame
+        
+        returns:
+            string
+        '''
+        wfs = data['WF'].unique()
+        frs = data['FR[%]'].unique()
+        qs = data['Q[W]'].unique()
+        alphas = data['alpha'].unique()
+        betas = data['beta'].unique()
+
+        msgs = []
+        for fr in frs:
+            print(f'FR {fr}')
+            for q in qs:
+                print(f'Q {q}')
+                for a in alphas:
+                    for b in betas:
+                        print(f'alpha {a}, beta {b}')
+                        
+                        # Filter the df
+                        df = data[(data['FR[%]'] == fr) & (data['Q[W]'] == q) & (data['alpha'] == a) & (data['beta'] == b)]
+
+                        best_tp = self.dv.best_TP(data=df, decimals=2)
+                        msg = f'\n\n--- Optimal Temperature and Pressure ---\n\n{best_tp}\n\n'
+                        msgs.append(msg)
+                        msgs_text = '\n'.join(msgs)
+
+        with open(os.path.join(self.dir_path, 'optimal_TP.txt'), 'w') as file:
+            file.write(msgs_text)
+        
+        return msgs_text
+
 #1
 @step
 def plot_Tc_vs_Te(data: pd.DataFrame,
@@ -227,3 +266,10 @@ def plot_dG_vs_TR(data: pd.DataFrame,
                             figsize=figsize,
                             save_figure = save_figure)
     return data
+
+# data stat
+# best TP condition for each example
+def get_optimal_TP(data: pd.DataFrame, dir_path, sample)->Annotated[str, 'Optimal Temperature and Pressure']:
+    dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
+    text = dve.get_optimal_TP(data=data)
+    return text
