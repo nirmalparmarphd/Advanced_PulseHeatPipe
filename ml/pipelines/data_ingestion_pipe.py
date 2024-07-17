@@ -39,7 +39,8 @@ from steps.data_eda import (plot_dG_vs_P,
                             plot_P_vs_Te,
                             plot_Tc_vs_Te,
                             plot_TR_vs_Q,
-                            plot_TR_vs_Te,)
+                            plot_TR_vs_Te,
+                            get_optimal_TP)
 
 # individual thermal and electrical data ingestion pipeline
 @pipeline(enable_cache=False)
@@ -81,7 +82,8 @@ def auto_eda_plots(dir_path, database):
     database = plot_Tc_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
     database = plot_TR_vs_Q(data=database, dir_path=dir_path, sample='DI_Water')
     database = plot_TR_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
-    return database
+    text = get_optimal_TP(data=database, dir_path=dir_path, sample='DI_Water')
+    return text
 
 # data pre-processing pipeline
 

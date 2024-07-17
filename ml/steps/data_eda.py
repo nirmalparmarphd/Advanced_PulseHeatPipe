@@ -269,6 +269,7 @@ def plot_dG_vs_TR(data: pd.DataFrame,
 
 # data stat
 # best TP condition for each example
+@step
 def get_optimal_TP(data: pd.DataFrame, dir_path, sample)->Annotated[str, 'Optimal Temperature and Pressure']:
     dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
     text = dve.get_optimal_TP(data=data)
