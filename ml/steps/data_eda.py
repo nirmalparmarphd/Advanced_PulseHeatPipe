@@ -119,19 +119,24 @@ class DataVisualizationEngine:
         
         return msgs_text
 
+#0 
+@step
+def step_initialization_DVE(dir_path:str, sample:str)->Annotated[DataVisualizationEngine, 'Data Visualization Engine']:
+    dvi = DataVisualizationEngine(dir_path=dir_path, sample=sample)
+    return dvi
+
 #1
 @step
 def plot_Tc_vs_Te(data: pd.DataFrame,
+                        dve: DataVisualizationEngine,
                         x_col: str = 'Te_mean[K]',
                         y_col: str = 'Tc_mean[K]',
                         auto_data_chop: bool = True,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
-                        dir_path: str = '../data',
-                        sample: str = 'DI_Water'
                     )->Annotated[pd.DataFrame, 'Auto Plotting of Tc vs Te']:
-    dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
+    dve = dve
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
                             y_col=y_col,
@@ -143,16 +148,15 @@ def plot_Tc_vs_Te(data: pd.DataFrame,
 #2
 @step
 def plot_P_vs_Te(data: pd.DataFrame,
+                        dve: DataVisualizationEngine,
                         x_col: str = 'Te_mean[K]',
                         y_col: str = 'P[bar]',
                         auto_data_chop: bool = True,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
-                        dir_path: str = '../data',
-                        sample: str = 'DI_Water'
                     )->Annotated[pd.DataFrame, 'Auto Plotting of P vs Te']:
-    dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
+    dve = dve
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
                             y_col=y_col,
@@ -164,16 +168,15 @@ def plot_P_vs_Te(data: pd.DataFrame,
 #3
 @step
 def plot_TR_vs_Te(data: pd.DataFrame,
+                        dve: DataVisualizationEngine,
                         x_col: str = 'Te_mean[K]',
                         y_col: str = 'TR[K/W]',
                         auto_data_chop: bool = True,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
-                        dir_path: str = '../data',
-                        sample: str = 'DI_Water'
                     )->Annotated[pd.DataFrame, 'Auto Plotting of TR vs Te']:
-    dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
+    dve = dve
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
                             y_col=y_col,
@@ -185,16 +188,15 @@ def plot_TR_vs_Te(data: pd.DataFrame,
 #4
 @step
 def plot_TR_vs_Q(data: pd.DataFrame,
+                        dve: DataVisualizationEngine,
                         x_col: str = 'Q[W]',
                         y_col: str = 'TR[K/W]',
                         auto_data_chop: bool = True,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
-                        dir_path: str = '../data',
-                        sample: str = 'DI_Water'
                     )->Annotated[pd.DataFrame, 'Auto Plotting of TR vs Q']:
-    dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
+    dve = dve
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
                             y_col=y_col,
@@ -206,16 +208,15 @@ def plot_TR_vs_Q(data: pd.DataFrame,
 #5
 @step
 def plot_dG_vs_Te(data: pd.DataFrame,
+                        dve: DataVisualizationEngine,
                         x_col: str = 'Te_mean[K]',
                         y_col: str = 'dG[KJ/mol]',
                         auto_data_chop: bool = True,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
-                        dir_path: str = '../data',
-                        sample: str = 'DI_Water'
                     )->Annotated[pd.DataFrame, 'Auto Plotting of dG vs Te']:
-    dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
+    dve = dve
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
                             y_col=y_col,
@@ -227,16 +228,15 @@ def plot_dG_vs_Te(data: pd.DataFrame,
 #6
 @step
 def plot_dG_vs_P(data: pd.DataFrame,
+                        dve: DataVisualizationEngine,
                         x_col: str = 'P[bar]',
                         y_col: str = 'dG[KJ/mol]',
                         auto_data_chop: bool = True,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
-                        dir_path: str = '../data',
-                        sample: str = 'DI_Water'
                     )->Annotated[pd.DataFrame, 'Auto Plotting of dG vs P']:
-    dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
+    dve = dve
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
                             y_col=y_col,
@@ -248,16 +248,15 @@ def plot_dG_vs_P(data: pd.DataFrame,
 #7
 @step
 def plot_dG_vs_TR(data: pd.DataFrame,
+                        dve: DataVisualizationEngine,
                         x_col: str = 'TR[K/W]',
                         y_col: str = 'dG[KJ/mol]',
                         auto_data_chop: bool = True,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
-                        dir_path: str = '../data',
-                        sample: str = 'DI_Water'
                     )->Annotated[pd.DataFrame, 'Auto Plotting of dG vs TR']:
-    dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
+    dve = dve
     dve.plot_thermal_property(data=data,
                             x_col=x_col,
                             y_col=y_col,
@@ -270,7 +269,8 @@ def plot_dG_vs_TR(data: pd.DataFrame,
 # data stat
 # best TP condition for each example
 @step
-def get_optimal_TP(data: pd.DataFrame, dir_path, sample)->Annotated[str, 'Optimal Temperature and Pressure']:
-    dve = DataVisualizationEngine(dir_path=dir_path, sample=sample)
+def get_optimal_TP(data: pd.DataFrame,
+                    dve: DataVisualizationEngine)->Annotated[str, 'Optimal Temperature and Pressure']:
+    dve = dve
     text = dve.get_optimal_TP(data=data)
     return text

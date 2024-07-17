@@ -42,7 +42,8 @@ from steps.data_eda import (plot_dG_vs_P,
                             plot_Tc_vs_Te,
                             plot_TR_vs_Q,
                             plot_TR_vs_Te,
-                            get_optimal_TP)
+                            get_optimal_TP,
+                            step_initialization_DVE)
 
 # individual thermal and electrical data ingestion pipeline
 @pipeline(enable_cache=False, name='DATA INGESTION PIPELINE')
@@ -79,14 +80,15 @@ def database_generation_pipeline(dir_path, database):
 @pipeline(enable_cache=False, name='EDA PIPELINE')
 def auto_eda_plots(dir_path, database):
     # database = client.get_artifact_version('Calculating Gibbs Free Energy').load()
-    database = plot_dG_vs_P(data=database, dir_path=dir_path, sample='DI_Water')
-    database = plot_dG_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
-    database = plot_dG_vs_TR(data=database, dir_path=dir_path, sample='DI_Water')
-    database = plot_P_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
-    database = plot_Tc_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
-    database = plot_TR_vs_Q(data=database, dir_path=dir_path, sample='DI_Water')
-    database = plot_TR_vs_Te(data=database, dir_path=dir_path, sample='DI_Water')
-    text = get_optimal_TP(data=database, dir_path=dir_path, sample='DI_Water')
+    dve = step_initialization_DVE(dir_path=dir_path, sample='DI_Water')
+    database = plot_dG_vs_P(dve=dve, data=database)
+    database = plot_dG_vs_Te(dve=dve, data=database)
+    database = plot_dG_vs_TR(dve=dve, data=database)
+    database = plot_P_vs_Te(dve=dve, data=database)
+    database = plot_Tc_vs_Te(dve=dve, data=database)
+    database = plot_TR_vs_Q(dve=dve, data=database)
+    database = plot_TR_vs_Te(dve=dve, data=database)
+    text = get_optimal_TP(dve=dve, data=database)
     return text
 
 # data pre-processing pipeline
