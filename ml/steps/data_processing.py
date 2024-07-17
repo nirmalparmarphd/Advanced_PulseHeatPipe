@@ -102,6 +102,7 @@ class DataProcessingEngine:
             df_sd['Q[W]'] = row['Q [W]']
             df_sd['alpha'] = row['alpha']
             df_sd['beta'] = row['beta']
+            df_sd['pulse'] = row['t_pulse_start']
             frames.append(df_sd)
             
         df_database = pd.concat(frames, ignore_index=True)
