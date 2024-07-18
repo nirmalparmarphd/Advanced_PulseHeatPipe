@@ -7,6 +7,7 @@ import chardet
 from typing import Annotated, Tuple, NoReturn
 from zenml import step
 import glob
+import re
 
 
 class DataIngestionEngine:
@@ -88,9 +89,52 @@ class DataIngestionEngine:
             utf_type = result['encoding']
         return utf_type
 
-    # load csv (thermal and electrical)
-    def loading_csv_data(self, utf_type:str, path:str)->Tuple[Annotated[pd.DataFrame, 'RAW Data Thermal'],
-                                                    Annotated[pd.DataFrame, 'Raw Data Electrical']]:
+    def detect_encoding(self, file_path):
+        with open(file_path, 'rb') as file:
+            raw_data = file.read(10000)
+            result = chardet.detect(raw_data)
+            return result['encoding']
+
+    def fix_date_separators(self, file_path, encoding, delimiter):
+        # Load the CSV file
+        df = pd.read_csv(file_path, encoding=encoding, delimiter=delimiter)
+        
+        # Check if the DATE column exists
+        if 'DATE' not in df.columns:
+            raise ValueError("The CSV file does not contain a 'DATE' column.")
+        
+        # Define the pattern to match date separators and the replacement
+        pattern = r"[-,\\]"
+        replacement = "/"
+        
+        # Replace date separators in the DATE column
+        df['DATE'] = df['DATE'].apply(lambda x: re.sub(pattern, replacement, x))
+        
+        # Save the modified DataFrame back to the same CSV file
+        df.to_csv(file_path, index=False, encoding=encoding)
+
+    def detect_delimiter(self, file_path, encoding):
+        with open(file_path, 'r', encoding=encoding) as file:
+            first_line = file.readline()
+            if '\t' in first_line and ',' in first_line:
+                # Heuristic: If both delimiters are present, check which is more frequent
+                tab_count = first_line.count('\t')
+                comma_count = first_line.count(',')
+                return '\t' if tab_count > comma_count else ','
+            elif '\t' in first_line:
+                return '\t'
+            elif ',' in first_line:
+                return ','
+            else:
+                raise ValueError('### Unable to detect delimiter in the file!')
+
+    def read_csv_with_detected_delimiter(self, file_path, encoding):
+        delimiter = self.detect_delimiter(file_path, encoding)
+        self.fix_date_separators(file_path=file_path, encoding=encoding, delimiter=delimiter)
+        return pd.read_csv(file_path, encoding=encoding, delimiter=delimiter)
+
+    def loading_csv_data(self, utf_type: str, path: str) -> Tuple[Annotated[pd.DataFrame, 'RAW Data Thermal'],
+                                                                  Annotated[pd.DataFrame, 'Raw Data Electrical']]:
         """
         to load experimental csv data for each Q[W] heat and Alpha-Beta combinations.
 
@@ -102,7 +146,6 @@ class DataIngestionEngine:
             df = loading_csv_data(utf_type='UTF_16')
 
         """
-
         self.path = path
         if 'E' in self.path.split('_')[1]:
             self.path_thermal = self.path.replace('_E_', '_T_')
@@ -112,9 +155,88 @@ class DataIngestionEngine:
             self.path_thermal = self.path
         else:
             raise ValueError('### check raw data file name!')
-        df_thermal = pd.read_csv(self.path_thermal, encoding=utf_type ,delimiter='\t')
-        df_electrical = pd.read_csv(self.path_electrical, encoding=utf_type ,delimiter='\t')
+
+        # Detect file encoding
+        encoding_thermal = self.detect_encoding(self.path_thermal)
+        encoding_electrical = self.detect_encoding(self.path_electrical)
+
+        # Read the files with detected encoding and delimiter
+        df_thermal = self.read_csv_with_detected_delimiter(self.path_thermal, encoding_thermal)
+        df_electrical = self.read_csv_with_detected_delimiter(self.path_electrical, encoding_electrical)
+
         return df_thermal, df_electrical
+
+    # load csv (thermal and electrical)
+    # def loading_csv_data(self, utf_type:str, path:str)->Tuple[Annotated[pd.DataFrame, 'RAW Data Thermal'],
+    #                                                 Annotated[pd.DataFrame, 'Raw Data Electrical']]:
+    #     """
+    #     to load experimental csv data for each Q[W] heat and Alpha-Beta combinations.
+
+    #     args:
+    #         utf_type:str # 'UTF-16'
+    #         path:str # file path
+
+    #     use:
+    #         df = loading_csv_data(utf_type='UTF_16')
+
+    #     """
+
+    #     self.path = path
+    #     if 'E' in self.path.split('_')[1]:
+    #         self.path_thermal = self.path.replace('_E_', '_T_')
+    #         self.path_electrical = self.path
+    #     elif 'T' in self.path.split('_')[1]:
+    #         self.path_electrical = self.path.replace('_T_', '_E_')
+    #         self.path_thermal = self.path
+    #     else:
+    #         raise ValueError('### check raw data file name!')
+        
+    #     def fix_date_separators(file_path, encoding, delimiter):
+    #         # Load the CSV file
+    #         df = pd.read_csv(file_path, encoding=encoding, delimiter=delimiter)
+            
+    #         # Check if the DATE column exists
+    #         if 'DATE' not in df.columns:
+    #             raise ValueError("The CSV file does not contain a 'DATE' column.")
+            
+    #         # Define the pattern to match date separators and the replacement
+    #         pattern = r"[-,\\]"
+    #         replacement = "/"
+            
+    #         # Replace date separators in the DATE column
+    #         df['DATE'] = df['DATE'].apply(lambda x: re.sub(pattern, replacement, x))
+            
+    #         # Save the modified DataFrame back to the same CSV file
+    #         df.to_csv(file_path, index=False, encoding='utf-8')
+
+    #     def detect_delimiter(file_path, encoding):
+    #         with open(file_path, 'r', encoding=encoding) as file:
+    #             first_line = file.readline()
+    #             if '\t' in first_line and ',' in first_line:
+    #                 # Heuristic: If both delimiters are present, check which is more frequent
+    #                 tab_count = first_line.count('\t')
+    #                 comma_count = first_line.count(',')
+    #                 return '\t' if tab_count > comma_count else ','
+    #             elif '\t' in first_line:
+    #                 return '\t'
+    #             elif ',' in first_line:
+    #                 return ','
+    #             else:
+    #                 raise ValueError('### Unable to detect delimiter in the file!')
+
+    #     def read_csv_with_detected_delimiter(file_path, encoding):
+    #         delimiter = detect_delimiter(file_path, encoding)
+    #         fix_date_separators(file_path=file_path, delimiter=delimiter, encoding=utf_type)
+    #         encoding = self.identify_utf_type(file_path)
+    #         delimiter = detect_delimiter(file_path, encoding)
+    #         return pd.read_csv(file_path, encoding=encoding, delimiter=delimiter)
+
+    #     df_thermal = read_csv_with_detected_delimiter(self.path_thermal, utf_type)
+    #     df_electrical = read_csv_with_detected_delimiter(self.path_electrical, utf_type)
+
+    #     # df_thermal = pd.read_csv(self.path_thermal, encoding=utf_type ,delimiter='\t')
+    #     # df_electrical = pd.read_csv(self.path_electrical, encoding=utf_type ,delimiter='\t')
+    #     return df_thermal, df_electrical
 
     # handle date-time cols, basic data cleaning
     def processing_date_time(self, df:pd.DataFrame, 
@@ -180,19 +302,34 @@ def step_get_file_list(di:DataIngestionEngine)->Annotated[list, 'List of Experim
     file_list = di.get_list_files()
     return file_list
 
+# @step
+# def step_data_ingestion(file_list:list, di:DataIngestionEngine)->Tuple[Annotated[pd.DataFrame, 'RAW Data Thermal'],
+#                                                         Annotated[pd.DataFrame, 'Raw Data Electrical']]:
+#     df_t = []
+#     df_e = []
+#     for file in file_list:
+#         utf_type = di.identify_utf_type(path=file)
+#         df_thermal, df_electrical = di.loading_csv_data(utf_type=utf_type, path=file)
+#         df_t.append(df_thermal)
+#         df_e.append(df_electrical)
+#     df_thermal_combined = pd.concat(df_t, ignore_index=True)
+#     df_electrical_combined = pd.concat(df_e, ignore_index=True)
+#     return df_thermal_combined, df_electrical_combined
+
 @step
-def step_data_ingestion(file_list:list, di:DataIngestionEngine)->Tuple[Annotated[pd.DataFrame, 'RAW Data Thermal'],
-                                                        Annotated[pd.DataFrame, 'Raw Data Electrical']]:
-    df_t = []
-    df_e = []
+def step_data_ingestion(file_list:list, di:DataIngestionEngine)->Annotated[pd.DataFrame, 'RAW Thermal Data']:
+    df_j = []
     for file in file_list:
         utf_type = di.identify_utf_type(path=file)
         df_thermal, df_electrical = di.loading_csv_data(utf_type=utf_type, path=file)
-        df_t.append(df_thermal)
-        df_e.append(df_electrical)
-    df_thermal_combined = pd.concat(df_t, ignore_index=True)
-    df_electrical_combined = pd.concat(df_e, ignore_index=True)
-    return df_thermal_combined, df_electrical_combined
+        # Reset index to ensure uniqueness
+        df_thermal = df_thermal.reset_index(drop=True)
+        # df_electrical = df_electrical.reset_index(drop=True)
+        # # join
+        # df_join = pd.merge(left=df_thermal, right=df_electrical, on=['TIME', 'DATE'], how='inner')
+        df_j.append(df_thermal) 
+    df_thermal = pd.concat(df_j, ignore_index=True)
+    return df_thermal
 
 @step
 def step_thermal_data_dt_process(df_thermal:pd.DataFrame, di:DataIngestionEngine)->Annotated[pd.DataFrame,'Thermal Data - DT Process']:

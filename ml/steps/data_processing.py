@@ -6,6 +6,7 @@ from typing import Annotated, Tuple
 from zenml import step
 from PyPulseHeatPipe import PulseHeatPipe
 import numpy as np
+from datetime import datetime, timedelta
 
 class DataProcessingEngine:
     """
@@ -75,39 +76,68 @@ class DataProcessingEngine:
         return df
     
     def data_slicing_combine(self, 
-                             df_meta:pd.DataFrame, 
-                            df_raw_data:pd.DataFrame,
-                            col_start:str='dt_start',
-                            col_stop:str='dt_stop'):
+                            df_meta: pd.DataFrame, 
+                            df_raw_data: pd.DataFrame,
+                            col_start: str='dt_start',
+                            col_stop: str='dt_stop',
+                            max_search_seconds: int=60):
         """
-        to slice data from the clean experimental combined data
+        Slice data from the clean experimental combined data based on column values.
 
-        args:
-            df_meta: pd.DataFrame
-            df_raw_data: pd.DataFrame
-            col_start:str,
-            col_stop:str
+        Args:
+            df_meta: pd.DataFrame containing metadata
+            df_raw_data: pd.DataFrame containing raw data
+            col_start: str, column name for experiment start time (default: 'dt_start')
+            col_stop: str, column name for experiment stop time (default: 'dt_stop')
+            max_search_seconds: int, maximum seconds to incrementally search (default: 60)
 
-        returns:
-            pd.DataFrame
+        Returns:
+            pd.DataFrame: combined DataFrame
         """
-        df_raw_data.set_index('date', inplace=True)
-
         frames = []
-        for _ , row in df_meta.iterrows():
-            experiment_start = row[col_start]
-            experiment_stop = row[col_stop]
-            df_sd = df_raw_data.loc[experiment_start: experiment_stop]
+        for _, row in df_meta.iterrows():
+            # Convert experiment start and stop timestamps to datetime objects
+            experiment_start = pd.to_datetime(row[col_start], format='%d/%m/%Y%H:%M:%S')
+            experiment_stop = pd.to_datetime(row[col_stop], format='%d/%m/%Y%H:%M:%S')
+            
+            # Try to find closest match by incrementally searching up to max_search_seconds
+            found_start = False
+            found_stop = False
+            increment = timedelta(seconds=1)
+            search_time = timedelta(seconds=max_search_seconds)
+            
+            while not (found_start and found_stop) and search_time >= timedelta(seconds=0):
+                # Check if experiment_start is found
+                if any(df_raw_data['date'] == experiment_start):
+                    found_start = True
+                else:
+                    experiment_start += increment
+                
+                # Check if experiment_stop is found
+                if any(df_raw_data['date'] == experiment_stop):
+                    found_stop = True
+                else:
+                    experiment_stop += increment
+                
+                # Decrease the remaining search time
+                search_time -= increment
+            
+            # Slice raw data based on experiment start and stop times
+            df_sd = df_raw_data[(df_raw_data['date'] >= experiment_start) & (df_raw_data['date'] <= experiment_stop)].copy()
+            print(f"Timestamps {experiment_start} or {experiment_stop} found in df_raw_data index.")
+    
+            # Add metadata columns to sliced data
             df_sd['WF'] = row['WF']
             df_sd['FR[%]'] = row['FR [%]']
             df_sd['Q[W]'] = row['Q [W]']
             df_sd['alpha'] = row['alpha']
             df_sd['beta'] = row['beta']
             df_sd['pulse'] = row['t_pulse_start']
-            frames.append(df_sd)
             
+            frames.append(df_sd)
+        
+        # Concatenate all frames into a single DataFrame
         df_database = pd.concat(frames, ignore_index=True)
-        df_raw_data.reset_index(inplace=True)
 
         return df_database
     
@@ -313,8 +343,8 @@ def step_loading_meta_table(dpe:DataProcessingEngine)->Annotated[pd.DataFrame, '
 @step
 def step_meta_data_dt_process(dpe:DataProcessingEngine, 
                               df_meta:pd.DataFrame)->Annotated[pd.DataFrame, 'Meta Table - DT Processed']:
-    df_meta_processed = dpe.processing_date_time(df=df_meta, col='dt_start', col_date='Date', col_time='t_start', format='%d-%m-%Y%H:%M:%S')
-    df_meta_processed = dpe.processing_date_time(df=df_meta, col='dt_stop', col_date='Date', col_time='t_end', format='%d-%m-%Y%H:%M:%S')
+    df_meta_processed = dpe.processing_date_time(df=df_meta, col='dt_start', col_date='Date', col_time='t_start')
+    df_meta_processed = dpe.processing_date_time(df=df_meta, col='dt_stop', col_date='Date', col_time='t_end')
     return df_meta_processed
 
 @step

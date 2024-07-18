@@ -23,6 +23,111 @@ dG		 average:		  -194.85 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
+FR		 average:		  nan ± 0		 [%]
+Q		 average:		  nan ± 0		 [W]
+Te_mean		 average:		  nan ± 0		 [C]
+Tc_mean		 average:		  nan ± 0		 [C]
+Te_std		 average:		  nan ± 0		 [C]
+Tc_std		 average:		  nan ± 0		 [C]
+P		 average:		  nan ± 0		 [bar]
+Te_mean		 average:		  nan ± 0		 [K]
+Tc_mean		 average:		  nan ± 0		 [K]
+Te_std		 average:		  nan ± 0		 [K]
+Tc_std		 average:		  nan ± 0		 [K]
+TR		 average:		  nan ± 0		 [K/W]
+GFE_Te		 average:		  nan ± 0		 [KJ/mol]
+GFE_Tc		 average:		  nan ± 0		 [KJ/mol]
+dG		 average:		  nan ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+FR		 average:		  60.0 ± 0		 [%]
+Q		 average:		  40.0 ± 0		 [W]
+Te_mean		 average:		  35.0 ± 0		 [C]
+Tc_mean		 average:		  31.83 ± 0		 [C]
+Te_std		 average:		  0.34 ± 0		 [C]
+Tc_std		 average:		  1.03 ± 0		 [C]
+P		 average:		  0.75 ± 0		 [bar]
+Te_mean		 average:		  308.15 ± 0		 [K]
+Tc_mean		 average:		  304.97 ± 0		 [K]
+Te_std		 average:		  273.49 ± 0		 [K]
+Tc_std		 average:		  274.18 ± 0		 [K]
+TR		 average:		  0.08 ± 0		 [K/W]
+GFE_Te		 average:		  -759.89 ± 0		 [KJ/mol]
+GFE_Tc		 average:		  -752.06 ± 0		 [KJ/mol]
+dG		 average:		  -7.83 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+FR		 average:		  60.0 ± 0		 [%]
+Q		 average:		  60.0 ± 0		 [W]
+Te_mean		 average:		  36.08 ± 0		 [C]
+Tc_mean		 average:		  30.58 ± 0		 [C]
+Te_std		 average:		  0.48 ± 0		 [C]
+Tc_std		 average:		  1.32 ± 0		 [C]
+P		 average:		  0.96 ± 0		 [bar]
+Te_mean		 average:		  309.23 ± 0		 [K]
+Tc_mean		 average:		  303.72 ± 0		 [K]
+Te_std		 average:		  273.63 ± 0		 [K]
+Tc_std		 average:		  274.47 ± 0		 [K]
+TR		 average:		  0.09 ± 0		 [K/W]
+GFE_Te		 average:		  -130.14 ± 0		 [KJ/mol]
+GFE_Tc		 average:		  -127.82 ± 0		 [KJ/mol]
+dG		 average:		  -2.32 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+FR		 average:		  nan ± 0		 [%]
+Q		 average:		  nan ± 0		 [W]
+Te_mean		 average:		  nan ± 0		 [C]
+Tc_mean		 average:		  nan ± 0		 [C]
+Te_std		 average:		  nan ± 0		 [C]
+Tc_std		 average:		  nan ± 0		 [C]
+P		 average:		  nan ± 0		 [bar]
+Te_mean		 average:		  nan ± 0		 [K]
+Tc_mean		 average:		  nan ± 0		 [K]
+Te_std		 average:		  nan ± 0		 [K]
+Tc_std		 average:		  nan ± 0		 [K]
+TR		 average:		  nan ± 0		 [K/W]
+GFE_Te		 average:		  nan ± 0		 [KJ/mol]
+GFE_Tc		 average:		  nan ± 0		 [KJ/mol]
+dG		 average:		  nan ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+FR		 average:		  60.0 ± 0.0		 [%]
+Q		 average:		  60.0 ± 0.0		 [W]
+Te_mean		 average:		  34.06 ± 0.0		 [C]
+Tc_mean		 average:		  30.850000000000005 ± 4.351167857633658e-15		 [C]
+Te_std		 average:		  0.32 ± 0.0		 [C]
+Tc_std		 average:		  1.24 ± 0.0		 [C]
+P		 average:		  0.38999999999999996 ± 6.798699777552591e-17		 [bar]
+Te_mean		 average:		  307.21 ± 0.0		 [K]
+Tc_mean		 average:		  304.0 ± 0.0		 [K]
+Te_std		 average:		  273.47 ± 0.0		 [K]
+Tc_std		 average:		  274.39 ± 0.0		 [K]
+TR		 average:		  0.05000000000000001 ± 8.498374721940739e-18		 [K/W]
+GFE_Te		 average:		  -2418.42 ± 0.0		 [KJ/mol]
+GFE_Tc		 average:		  -2393.15 ± 0.0		 [KJ/mol]
+dG		 average:		  -25.27 ± 0.0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
 FR		 average:		  60.0 ± 0		 [%]
 Q		 average:		  80.0 ± 0		 [W]
 Te_mean		 average:		  72.5 ± 0		 [C]
@@ -44,21 +149,105 @@ dG		 average:		  -149.68 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
+FR		 average:		  nan ± 0		 [%]
+Q		 average:		  nan ± 0		 [W]
+Te_mean		 average:		  nan ± 0		 [C]
+Tc_mean		 average:		  nan ± 0		 [C]
+Te_std		 average:		  nan ± 0		 [C]
+Tc_std		 average:		  nan ± 0		 [C]
+P		 average:		  nan ± 0		 [bar]
+Te_mean		 average:		  nan ± 0		 [K]
+Tc_mean		 average:		  nan ± 0		 [K]
+Te_std		 average:		  nan ± 0		 [K]
+Tc_std		 average:		  nan ± 0		 [K]
+TR		 average:		  nan ± 0		 [K/W]
+GFE_Te		 average:		  nan ± 0		 [KJ/mol]
+GFE_Tc		 average:		  nan ± 0		 [KJ/mol]
+dG		 average:		  nan ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+FR		 average:		  60.0 ± 0		 [%]
+Q		 average:		  80.0 ± 0		 [W]
+Te_mean		 average:		  40.04 ± 0		 [C]
+Tc_mean		 average:		  30.3 ± 0		 [C]
+Te_std		 average:		  0.5 ± 0		 [C]
+Tc_std		 average:		  0.94 ± 0		 [C]
+P		 average:		  0.88 ± 0		 [bar]
+Te_mean		 average:		  313.19 ± 0		 [K]
+Tc_mean		 average:		  303.45 ± 0		 [K]
+Te_std		 average:		  273.65 ± 0		 [K]
+Tc_std		 average:		  274.09 ± 0		 [K]
+TR		 average:		  0.12 ± 0		 [K/W]
+GFE_Te		 average:		  -357.63 ± 0		 [KJ/mol]
+GFE_Tc		 average:		  -346.51 ± 0		 [KJ/mol]
+dG		 average:		  -11.12 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
 FR		 average:		  60.0 ± 0.0		 [%]
 Q		 average:		  100.0 ± 0.0		 [W]
 Te_mean		 average:		  75.6 ± 0.0		 [C]
-Tc_mean		 average:		  31.149999999999995 ± 4.351167857633658e-15		 [C]
+Tc_mean		 average:		  31.15 ± 0.0		 [C]
 Te_std		 average:		  0.62 ± 0.0		 [C]
-Tc_std		 average:		  1.4400000000000002 ± 2.7194799110210365e-16		 [C]
+Tc_std		 average:		  1.44 ± 0.0		 [C]
 P		 average:		  0.61 ± 0.0		 [bar]
 Te_mean		 average:		  348.75 ± 0.0		 [K]
 Tc_mean		 average:		  304.3 ± 0.0		 [K]
 Te_std		 average:		  273.77 ± 0.0		 [K]
 Tc_std		 average:		  274.59 ± 0.0		 [K]
 TR		 average:		  0.44 ± 0.0		 [K/W]
-GFE_Te		 average:		  -1456.4399999999998 ± 2.7847474288855413e-13		 [KJ/mol]
+GFE_Te		 average:		  -1456.44 ± 0.0		 [KJ/mol]
 GFE_Tc		 average:		  -1270.81 ± 0.0		 [KJ/mol]
 dG		 average:		  -185.63 ± 0.0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+FR		 average:		  nan ± 0		 [%]
+Q		 average:		  nan ± 0		 [W]
+Te_mean		 average:		  nan ± 0		 [C]
+Tc_mean		 average:		  nan ± 0		 [C]
+Te_std		 average:		  nan ± 0		 [C]
+Tc_std		 average:		  nan ± 0		 [C]
+P		 average:		  nan ± 0		 [bar]
+Te_mean		 average:		  nan ± 0		 [K]
+Tc_mean		 average:		  nan ± 0		 [K]
+Te_std		 average:		  nan ± 0		 [K]
+Tc_std		 average:		  nan ± 0		 [K]
+TR		 average:		  nan ± 0		 [K/W]
+GFE_Te		 average:		  nan ± 0		 [KJ/mol]
+GFE_Tc		 average:		  nan ± 0		 [KJ/mol]
+dG		 average:		  nan ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+FR		 average:		  60.0 ± 0		 [%]
+Q		 average:		  100.0 ± 0		 [W]
+Te_mean		 average:		  60.94 ± 0		 [C]
+Tc_mean		 average:		  30.85 ± 0		 [C]
+Te_std		 average:		  0.71 ± 0		 [C]
+Tc_std		 average:		  1.31 ± 0		 [C]
+P		 average:		  0.9 ± 0		 [bar]
+Te_mean		 average:		  334.09 ± 0		 [K]
+Tc_mean		 average:		  304.0 ± 0		 [K]
+Te_std		 average:		  273.86 ± 0		 [K]
+Tc_std		 average:		  274.46 ± 0		 [K]
+TR		 average:		  0.3 ± 0		 [K/W]
+GFE_Te		 average:		  -319.28 ± 0		 [KJ/mol]
+GFE_Tc		 average:		  -290.53 ± 0		 [KJ/mol]
+dG		 average:		  -28.76 ± 0		 [KJ/mol]
 
 
 
@@ -80,4 +269,46 @@ TR		 average:		  0.33 ± 0		 [K/W]
 GFE_Te		 average:		  -1128.5 ± 0		 [KJ/mol]
 GFE_Tc		 average:		  -997.17 ± 0		 [KJ/mol]
 dG		 average:		  -131.33 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+FR		 average:		  60.0 ± 0		 [%]
+Q		 average:		  120.0 ± 0		 [W]
+Te_mean		 average:		  70.9 ± 0		 [C]
+Tc_mean		 average:		  31.9 ± 0		 [C]
+Te_std		 average:		  0.81 ± 0		 [C]
+Tc_std		 average:		  1.01 ± 0		 [C]
+P		 average:		  0.77 ± 0		 [bar]
+Te_mean		 average:		  344.05 ± 0		 [K]
+Tc_mean		 average:		  305.05 ± 0		 [K]
+Te_std		 average:		  273.96 ± 0		 [K]
+Tc_std		 average:		  274.16 ± 0		 [K]
+TR		 average:		  0.32 ± 0		 [K/W]
+GFE_Te		 average:		  -773.44 ± 0		 [KJ/mol]
+GFE_Tc		 average:		  -685.77 ± 0		 [KJ/mol]
+dG		 average:		  -87.67 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+FR		 average:		  60.0 ± 0		 [%]
+Q		 average:		  120.0 ± 0		 [W]
+Te_mean		 average:		  51.92 ± 0		 [C]
+Tc_mean		 average:		  31.05 ± 0		 [C]
+Te_std		 average:		  0.86 ± 0		 [C]
+Tc_std		 average:		  1.17 ± 0		 [C]
+P		 average:		  0.93 ± 0		 [bar]
+Te_mean		 average:		  325.07 ± 0		 [K]
+Tc_mean		 average:		  304.2 ± 0		 [K]
+Te_std		 average:		  274.01 ± 0		 [K]
+Tc_std		 average:		  274.32 ± 0		 [K]
+TR		 average:		  0.17 ± 0		 [K/W]
+GFE_Te		 average:		  -222.34 ± 0		 [KJ/mol]
+GFE_Tc		 average:		  -208.06 ± 0		 [KJ/mol]
+dG		 average:		  -14.27 ± 0		 [KJ/mol]
 
