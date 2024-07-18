@@ -60,10 +60,10 @@ def data_ingestion_pipeline(dir_path):
 
 # meta table ingestion and experimental database creation
 @pipeline(enable_cache=False, name='DATABASE GENERATION PIPELINE')
-def database_generation_pipeline(dir_path, database):
+def database_generation_pipeline(dir_path, database, filename):
     # df_raw_database = client.get_artifact_version('Cleaning Joined Data').load()
     dpe = step_initialize_DPE(dir_path)
-    df_meta = step_loading_meta_table(dpe=dpe)
+    df_meta = step_loading_meta_table(dpe=dpe, filename=filename)
     df_meta_processed = step_meta_data_dt_process(dpe=dpe,df_meta=df_meta)
     df_database = step_database(dpe=dpe, df_meta=df_meta_processed, df_raw=database)
     df_database = step_processing_dt_col_pulse(dpe=dpe, df_database=df_database)

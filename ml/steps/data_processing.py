@@ -12,13 +12,13 @@ class DataProcessingEngine:
     """
     Data Processing Engine is used for various data processing related steps
 
-    # loading meta table
+    loading meta table
 
-    # slicing data as per meta table and make a experimental database
+    slicing data as per meta table and make a experimental database
 
-    # removing garbage data from failed experiments, threshold 1000
+    removing garbage data from failed experiments, threshold 1000
 
-    # calculating TR and other Thermal params with the help of PyPulseHeatPipe library
+    calculating TR and other Thermal params with the help of PyPulseHeatPipe library
     
     """
     def __init__(self, dir_path: str):
@@ -336,8 +336,8 @@ def step_initialize_DPE(dir_path:str)->Annotated[DataProcessingEngine, 'Data Pro
 
 
 @step
-def step_loading_meta_table(dpe:DataProcessingEngine)->Annotated[pd.DataFrame, 'Meta Table Loaded']:
-    df_meta = dpe.load_meta_table(file_name='meta_table_data.csv')
+def step_loading_meta_table(dpe:DataProcessingEngine, filename:str = 'meta_table_data.csv')->Annotated[pd.DataFrame, 'Meta Table Loaded']:
+    df_meta = dpe.load_meta_table(file_name=filename)
     return df_meta
 
 @step

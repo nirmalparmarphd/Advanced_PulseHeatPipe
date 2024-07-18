@@ -14,19 +14,19 @@ class DataIngestionEngine:
     """
     DataIngestionEngine is used for data ingestion - various methods as mentioned below
 
-        # get a list of each experimental files
+        get a list of each experimental files
     
-        # identify utf type
+        identify utf type
 
-        # load csv (thermal and electrical)
+        load csv (thermal and electrical)
 
-        # handle date-time cols, basic data cleaning
+        handle date-time cols, basic data cleaning
 
-        # join thermal and electrical data on date-time cols
+        join thermal and electrical data on date-time cols
 
-        # combine all experimental data to create a database
+        combine all experimental data to create a database
 
-        # NOTE: Please add '_T_' and '_E_' in the raw data file naming.
+        NOTE: Please add '_T_' and '_E_' in the raw data file naming.
     """
 
     def __init__(self, data_directory:str='../data/'):

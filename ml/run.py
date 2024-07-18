@@ -13,10 +13,13 @@ def main_pipeline_php(path:str = '../data/'):
     data_ingestion = data_ingestion_pipeline(dir_path=path)
 
     # with help of the experimental metal table selecting/filtering data, combining, and cleaning
-    database_generation = database_generation_pipeline(dir_path=path, database=data_ingestion)
+    database_generation = database_generation_pipeline(dir_path=path, 
+                                                       database=data_ingestion, 
+                                                       filename='meta_table_data.csv')
 
     # auto generation of plots for selected thermal properties using PyPulseHeatPipe
-    auto_eda = auto_eda_plots(dir_path=path, database=database_generation)
+    auto_eda = auto_eda_plots(dir_path=path, 
+                              database=database_generation)
 
     # data pre-processing before ML
 
