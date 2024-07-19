@@ -1,6 +1,8 @@
 # to run all ML pipelines
 
 from pipelines.data_ingestion_pipe import data_ingestion_pipeline, database_generation_pipeline, auto_eda_plots
+from pipelines.data_pre_processing_pipe import data_preprocessing_pipeline
+from pipelines.machine_learning_pipe import machine_learning_pipeline
 
 from zenml import pipeline
 import sys, os
@@ -22,8 +24,10 @@ def main_pipeline_php(path:str = '../data/'):
                               database=database_generation)
 
     # data pre-processing before ML
+    data_ml = data_preprocessing_pipeline(data_path='../data/database/database.csv')
 
     # ML training and evaluation of ML model
+    rmse_rfr, r2_rfr = machine_learning_pipeline(data=data_ml, model_name='rfr') 
 
     # auto generation of plots for ML-experimental data
 

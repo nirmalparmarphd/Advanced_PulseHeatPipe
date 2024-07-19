@@ -1,33 +1,18 @@
-# for data pre-processing for ML
-
+from zenml import pipeline
+from zenml.client import Client
+import os, sys
 import pandas as pd
+client = Client()
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-class DataPreProcessingEngine():
-    '''
-    Pre-processing experimental data
+from steps.data_pre_processing import (step_get_database,
+                                       step_get_features,
+                                       step_initialize_DPPE)
 
-    standardization
+@pipeline(enable_cache=False, name='ML Data Pre Processing')
+def data_preprocessing_pipeline(data_path:str):
+    dppe = step_initialize_DPPE(data_path)
+    df = step_get_database(dppe)
+    data = step_get_features(dppe, df=df)
+    return data
 
-    handling categorical data
-
-    handling datetime data
-    '''
-
-    def __init__(self,
-                 data: pd.DataFrame):
-        self.data = data
-
-    def do_standardization(self):
-        pass
-
-    def do_categorization(self):
-        pass
-
-    def do_train_test_split(self):
-        pass
-
-    def do_drop_cols(self):
-        pass
-
-    def do_save_to_csv(self):
-        pass
