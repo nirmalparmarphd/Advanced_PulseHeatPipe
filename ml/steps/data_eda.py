@@ -80,7 +80,9 @@ class DataVisualizationEngine:
                             plot_method=plot_method,
                             figsize=figsize,
                             save_figure = save_figure,
-                            T_pulse_col=T_pulse_col,)
+                            T_pulse_col=T_pulse_col,
+                            colormap='plasma') # to change color style of plots NOTE
+        
         return print('completed auto plotting.')
     
     def get_optimal_TP(self,data:pd.DataFrame):
