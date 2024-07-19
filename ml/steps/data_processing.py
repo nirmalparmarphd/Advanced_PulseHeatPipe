@@ -7,6 +7,7 @@ from zenml import step
 from PyPulseHeatPipe import PulseHeatPipe
 import numpy as np
 from datetime import datetime, timedelta
+from dateutil import parser
 
 class DataProcessingEngine:
     """
@@ -53,27 +54,35 @@ class DataProcessingEngine:
         return df
     
     def processing_date_time(self, df:pd.DataFrame, 
-                             col:str,
-                             col_date:str,
-                             col_time:str, 
-                             format:str='%d/%m/%Y%H:%M:%S')-> Annotated[pd.DataFrame,'Process DateTime col']:
+                             col:str='date',
+                             col_date:str='DATE',
+                             col_time:str='TIME')-> Annotated[pd.DataFrame,'Process DateTime col']:
         """
         to process date time cols from row data and returns timestamp col for further analysis
 
         args:
             df:pd.DataFrame # experimental raw data
-            col:str # col name output
-            col_date:str
-            col_time:str
+            col:str # col name
             format:str # datetime expected format
+            col_date:str='DATE',
+            col_time:str='TIME'
 
         use:
             df = processing_date_time(df, col, format)
 
         """
-        df[col] = df[col_date] + df[col_time]
-        df[col] = pd.to_datetime(df[col], format=format)
+        # Define a function to parse dates using dateutil.parser
+        def parse_date(date_str):
+            try:
+                #dayfirst=True to handle day/month/year format correctly
+                return parser.parse(date_str, dayfirst=True)
+            except ValueError:
+                return None
+            
+        df[col] = df[col_date].astype(str) + ' ' + df[col_time].astype(str)
+        df[col] = df[col].apply(parse_date)
         return df
+
     
     def data_slicing_combine(self, 
                             df_meta: pd.DataFrame, 

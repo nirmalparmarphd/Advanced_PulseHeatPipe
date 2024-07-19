@@ -8,6 +8,7 @@ from typing import Annotated, Tuple, NoReturn
 from zenml import step
 import glob
 import re
+from dateutil import parser
 
 
 class DataIngestionEngine:
@@ -166,82 +167,10 @@ class DataIngestionEngine:
 
         return df_thermal, df_electrical
 
-    # load csv (thermal and electrical)
-    # def loading_csv_data(self, utf_type:str, path:str)->Tuple[Annotated[pd.DataFrame, 'RAW Data Thermal'],
-    #                                                 Annotated[pd.DataFrame, 'Raw Data Electrical']]:
-    #     """
-    #     to load experimental csv data for each Q[W] heat and Alpha-Beta combinations.
-
-    #     args:
-    #         utf_type:str # 'UTF-16'
-    #         path:str # file path
-
-    #     use:
-    #         df = loading_csv_data(utf_type='UTF_16')
-
-    #     """
-
-    #     self.path = path
-    #     if 'E' in self.path.split('_')[1]:
-    #         self.path_thermal = self.path.replace('_E_', '_T_')
-    #         self.path_electrical = self.path
-    #     elif 'T' in self.path.split('_')[1]:
-    #         self.path_electrical = self.path.replace('_T_', '_E_')
-    #         self.path_thermal = self.path
-    #     else:
-    #         raise ValueError('### check raw data file name!')
-        
-    #     def fix_date_separators(file_path, encoding, delimiter):
-    #         # Load the CSV file
-    #         df = pd.read_csv(file_path, encoding=encoding, delimiter=delimiter)
-            
-    #         # Check if the DATE column exists
-    #         if 'DATE' not in df.columns:
-    #             raise ValueError("The CSV file does not contain a 'DATE' column.")
-            
-    #         # Define the pattern to match date separators and the replacement
-    #         pattern = r"[-,\\]"
-    #         replacement = "/"
-            
-    #         # Replace date separators in the DATE column
-    #         df['DATE'] = df['DATE'].apply(lambda x: re.sub(pattern, replacement, x))
-            
-    #         # Save the modified DataFrame back to the same CSV file
-    #         df.to_csv(file_path, index=False, encoding='utf-8')
-
-    #     def detect_delimiter(file_path, encoding):
-    #         with open(file_path, 'r', encoding=encoding) as file:
-    #             first_line = file.readline()
-    #             if '\t' in first_line and ',' in first_line:
-    #                 # Heuristic: If both delimiters are present, check which is more frequent
-    #                 tab_count = first_line.count('\t')
-    #                 comma_count = first_line.count(',')
-    #                 return '\t' if tab_count > comma_count else ','
-    #             elif '\t' in first_line:
-    #                 return '\t'
-    #             elif ',' in first_line:
-    #                 return ','
-    #             else:
-    #                 raise ValueError('### Unable to detect delimiter in the file!')
-
-    #     def read_csv_with_detected_delimiter(file_path, encoding):
-    #         delimiter = detect_delimiter(file_path, encoding)
-    #         fix_date_separators(file_path=file_path, delimiter=delimiter, encoding=utf_type)
-    #         encoding = self.identify_utf_type(file_path)
-    #         delimiter = detect_delimiter(file_path, encoding)
-    #         return pd.read_csv(file_path, encoding=encoding, delimiter=delimiter)
-
-    #     df_thermal = read_csv_with_detected_delimiter(self.path_thermal, utf_type)
-    #     df_electrical = read_csv_with_detected_delimiter(self.path_electrical, utf_type)
-
-    #     # df_thermal = pd.read_csv(self.path_thermal, encoding=utf_type ,delimiter='\t')
-    #     # df_electrical = pd.read_csv(self.path_electrical, encoding=utf_type ,delimiter='\t')
-    #     return df_thermal, df_electrical
-
-    # handle date-time cols, basic data cleaning
     def processing_date_time(self, df:pd.DataFrame, 
-                             col:str='date', 
-                             format:str='%d/%m/%Y%H:%M:%S')-> Annotated[pd.DataFrame,'Process DateTime col']:
+                             col:str='date',
+                             col_date:str='DATE',
+                             col_time:str='TIME')-> Annotated[pd.DataFrame,'Process DateTime col']:
         """
         to process date time cols from row data and returns timestamp col for further analysis
 
@@ -249,13 +178,23 @@ class DataIngestionEngine:
             df:pd.DataFrame # experimental raw data
             col:str # col name
             format:str # datetime expected format
+            col_date:str='DATE',
+            col_time:str='TIME'
 
         use:
             df = processing_date_time(df, col, format)
 
         """
-        df[col] = df['DATE'] + df['TIME']
-        df[col] = pd.to_datetime(df[col], format=format)
+        # Define a function to parse dates using dateutil.parser
+        def parse_date(date_str):
+            try:
+                #dayfirst=True to handle day/month/year format correctly
+                return parser.parse(date_str, dayfirst=True)
+            except ValueError:
+                return None
+            
+        df[col] = df[col_date].astype(str) + ' ' + df[col_time].astype(str)
+        df[col] = df[col].apply(parse_date)
         return df
 
     # join thermal and electrical data on date-time cols
