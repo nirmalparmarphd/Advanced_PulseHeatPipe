@@ -10,13 +10,13 @@ class DataVisualizationEngine:
     """
     to visualize thermal params
 
-    # temperature plot @ FR, A, B
+        temperature plot @ FR, A, B
 
-    # heat Q plot @ FR, A, B
+        heat Q plot @ FR, A, B
 
-    # pressure plot @ FR, A, B
+        pressure plot @ FR, A, B
 
-    # Q vs TR @ FR, A, B
+        Q vs TR @ FR, A, B
     """
 
     def __init__(self, 
@@ -54,7 +54,8 @@ class DataVisualizationEngine:
                               auto_data_chop: bool,
                               plot_method: str,
                               figsize = (15, 7),
-                              save_figure: bool = True
+                              save_figure: bool = True,
+                              T_pulse_col='T_pulse[K]'
                               ):
         """
         to plot thermal properties
@@ -78,7 +79,8 @@ class DataVisualizationEngine:
                             auto_data_chop=auto_data_chop,
                             plot_method=plot_method,
                             figsize=figsize,
-                            save_figure = save_figure)
+                            save_figure = save_figure,
+                            T_pulse_col=T_pulse_col,)
         return print('completed auto plotting.')
     
     def get_optimal_TP(self,data:pd.DataFrame):
@@ -108,11 +110,13 @@ class DataVisualizationEngine:
                         
                         # Filter the df
                         df = data[(data['FR[%]'] == fr) & (data['Q[W]'] == q) & (data['alpha'] == a) & (data['beta'] == b)]
-
-                        best_tp = self.dv.best_TP(data=df, decimals=2)
-                        msg = f'\n\n--- Optimal Temperature and Pressure ---\n\n{best_tp}\n\n'
-                        msgs.append(msg)
-                        msgs_text = '\n'.join(msgs)
+                        if not df.empty:
+                            best_tp = self.dv.best_TP(data=df, decimals=2)
+                            msg = f'\n\n--- Optimal Temperature and Pressure ---\n\n{best_tp}\n\n'
+                            msgs.append(msg)
+                            msgs_text = '\n'.join(msgs)
+                        else:
+                            continue
 
         with open(os.path.join(self.dir_path, 'optimal_TP.txt'), 'w') as file:
             file.write(msgs_text)
@@ -135,6 +139,7 @@ def plot_Tc_vs_Te(data: pd.DataFrame,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
+                        T_pulse_col='T_pulse[K]'
                     )->Annotated[pd.DataFrame, 'Auto Plotting of Tc vs Te']:
     dve = dve
     dve.plot_thermal_property(data=data,
@@ -143,7 +148,8 @@ def plot_Tc_vs_Te(data: pd.DataFrame,
                             auto_data_chop=auto_data_chop,
                             plot_method=plot_method,
                             figsize=figsize,
-                            save_figure = save_figure)
+                            save_figure = save_figure,
+                            T_pulse_col=T_pulse_col)
     return data
 #2
 @step
@@ -155,6 +161,7 @@ def plot_P_vs_Te(data: pd.DataFrame,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
+                        T_pulse_col='T_pulse[K]'
                     )->Annotated[pd.DataFrame, 'Auto Plotting of P vs Te']:
     dve = dve
     dve.plot_thermal_property(data=data,
@@ -163,7 +170,8 @@ def plot_P_vs_Te(data: pd.DataFrame,
                             auto_data_chop=auto_data_chop,
                             plot_method=plot_method,
                             figsize=figsize,
-                            save_figure = save_figure)
+                            save_figure = save_figure,
+                            T_pulse_col=T_pulse_col)
     return data
 #3
 @step
@@ -175,6 +183,7 @@ def plot_TR_vs_Te(data: pd.DataFrame,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
+                        T_pulse_col='T_pulse[K]'
                     )->Annotated[pd.DataFrame, 'Auto Plotting of TR vs Te']:
     dve = dve
     dve.plot_thermal_property(data=data,
@@ -183,7 +192,8 @@ def plot_TR_vs_Te(data: pd.DataFrame,
                             auto_data_chop=auto_data_chop,
                             plot_method=plot_method,
                             figsize=figsize,
-                            save_figure = save_figure)
+                            save_figure = save_figure,
+                            T_pulse_col=T_pulse_col)
     return data
 #4
 @step
@@ -195,6 +205,7 @@ def plot_TR_vs_Q(data: pd.DataFrame,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
+                        T_pulse_col=None
                     )->Annotated[pd.DataFrame, 'Auto Plotting of TR vs Q']:
     dve = dve
     dve.plot_thermal_property(data=data,
@@ -203,7 +214,8 @@ def plot_TR_vs_Q(data: pd.DataFrame,
                             auto_data_chop=auto_data_chop,
                             plot_method=plot_method,
                             figsize=figsize,
-                            save_figure = save_figure)
+                            save_figure = save_figure,
+                            T_pulse_col=T_pulse_col)
     return data
 #5
 @step
@@ -215,6 +227,7 @@ def plot_dG_vs_Te(data: pd.DataFrame,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
+                        T_pulse_col='T_pulse[K]'
                     )->Annotated[pd.DataFrame, 'Auto Plotting of dG vs Te']:
     dve = dve
     dve.plot_thermal_property(data=data,
@@ -223,7 +236,8 @@ def plot_dG_vs_Te(data: pd.DataFrame,
                             auto_data_chop=auto_data_chop,
                             plot_method=plot_method,
                             figsize=figsize,
-                            save_figure = save_figure)
+                            save_figure = save_figure,
+                            T_pulse_col=T_pulse_col)
     return data
 #6
 @step
@@ -235,6 +249,7 @@ def plot_dG_vs_P(data: pd.DataFrame,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
+                        T_pulse_col=None
                     )->Annotated[pd.DataFrame, 'Auto Plotting of dG vs P']:
     dve = dve
     dve.plot_thermal_property(data=data,
@@ -243,7 +258,8 @@ def plot_dG_vs_P(data: pd.DataFrame,
                             auto_data_chop=auto_data_chop,
                             plot_method=plot_method,
                             figsize=figsize,
-                            save_figure = save_figure)
+                            save_figure = save_figure,
+                            T_pulse_col=T_pulse_col)
     return data
 #7
 @step
@@ -255,6 +271,7 @@ def plot_dG_vs_TR(data: pd.DataFrame,
                         plot_method: str = 'combined',
                         figsize = (15, 7),
                         save_figure: bool = True,
+                        T_pulse_col=None
                     )->Annotated[pd.DataFrame, 'Auto Plotting of dG vs TR']:
     dve = dve
     dve.plot_thermal_property(data=data,
@@ -263,7 +280,8 @@ def plot_dG_vs_TR(data: pd.DataFrame,
                             auto_data_chop=auto_data_chop,
                             plot_method=plot_method,
                             figsize=figsize,
-                            save_figure = save_figure)
+                            save_figure = save_figure,
+                            T_pulse_col=T_pulse_col)
     return data
 
 # data stat

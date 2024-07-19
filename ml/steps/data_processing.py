@@ -332,7 +332,7 @@ class DataProcessingEngine:
             df_pt = database[database['TIME']==time]
             Te_pt = df_pt['Te_mean[K]'].min()
             db = database[database['pulse']==time]
-            db['T_pulse'] = Te_pt
+            db['T_pulse[K]'] = Te_pt
             frames.append(db)
         db = pd.concat(frames, axis=0, ignore_index=True)
         return db
