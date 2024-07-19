@@ -241,34 +241,34 @@ def step_get_file_list(di:DataIngestionEngine)->Annotated[list, 'List of Experim
     file_list = di.get_list_files()
     return file_list
 
-# @step
-# def step_data_ingestion(file_list:list, di:DataIngestionEngine)->Tuple[Annotated[pd.DataFrame, 'RAW Data Thermal'],
-#                                                         Annotated[pd.DataFrame, 'Raw Data Electrical']]:
-#     df_t = []
-#     df_e = []
-#     for file in file_list:
-#         utf_type = di.identify_utf_type(path=file)
-#         df_thermal, df_electrical = di.loading_csv_data(utf_type=utf_type, path=file)
-#         df_t.append(df_thermal)
-#         df_e.append(df_electrical)
-#     df_thermal_combined = pd.concat(df_t, ignore_index=True)
-#     df_electrical_combined = pd.concat(df_e, ignore_index=True)
-#     return df_thermal_combined, df_electrical_combined
-
 @step
-def step_data_ingestion(file_list:list, di:DataIngestionEngine)->Annotated[pd.DataFrame, 'RAW Thermal Data']:
-    df_j = []
+def step_data_ingestion(file_list:list, di:DataIngestionEngine)->Tuple[Annotated[pd.DataFrame, 'RAW Data Thermal'],
+                                                        Annotated[pd.DataFrame, 'Raw Data Electrical']]:
+    df_t = []
+    df_e = []
     for file in file_list:
         utf_type = di.identify_utf_type(path=file)
         df_thermal, df_electrical = di.loading_csv_data(utf_type=utf_type, path=file)
-        # Reset index to ensure uniqueness
-        df_thermal = df_thermal.reset_index(drop=True)
-        # df_electrical = df_electrical.reset_index(drop=True)
-        # # join
-        # df_join = pd.merge(left=df_thermal, right=df_electrical, on=['TIME', 'DATE'], how='inner')
-        df_j.append(df_thermal) 
-    df_thermal = pd.concat(df_j, ignore_index=True)
-    return df_thermal
+        df_t.append(df_thermal)
+        df_e.append(df_electrical)
+    df_thermal_combined = pd.concat(df_t, ignore_index=True)
+    df_electrical_combined = pd.concat(df_e, ignore_index=True)
+    return df_thermal_combined, df_electrical_combined
+
+# @step
+# def step_data_ingestion(file_list:list, di:DataIngestionEngine)->Annotated[pd.DataFrame, 'RAW Thermal Data']:
+#     df_j = []
+#     for file in file_list:
+#         utf_type = di.identify_utf_type(path=file)
+#         df_thermal, df_electrical = di.loading_csv_data(utf_type=utf_type, path=file)
+#         # Reset index to ensure uniqueness
+#         df_thermal = df_thermal.reset_index(drop=True)
+#         # df_electrical = df_electrical.reset_index(drop=True)
+#         # # join
+#         # df_join = pd.merge(left=df_thermal, right=df_electrical, on=['TIME', 'DATE'], how='inner')
+#         df_j.append(df_thermal) 
+#     df_thermal = pd.concat(df_j, ignore_index=True)
+#     return df_thermal
 
 @step
 def step_thermal_data_dt_process(df_thermal:pd.DataFrame, di:DataIngestionEngine)->Annotated[pd.DataFrame,'Thermal Data - DT Process']:

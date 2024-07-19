@@ -1,0 +1,539 @@
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  60.0 ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  40.0 ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  70.26 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  32.67 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  0.34 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  1.25 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  0.54 ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  343.41 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  305.82 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  273.49 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  274.4 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  0.94 ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  -1780.34 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  -1585.49 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  -194.85 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  nan ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  nan ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  nan ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  nan ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  nan ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  nan ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  nan ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  60.0 ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  40.0 ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  35.0 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  31.83 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  0.34 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  1.03 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  0.75 ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  308.15 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  304.97 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  273.49 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  274.18 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  0.08 ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  -759.89 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  -752.06 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  -7.83 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  60.0 ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  60.0 ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  36.08 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  30.58 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  0.48 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  1.32 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  0.96 ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  309.23 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  303.72 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  273.63 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  274.47 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  0.09 ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  -130.14 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  -127.82 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  -2.32 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  nan ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  nan ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  nan ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  nan ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  nan ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  nan ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  nan ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  60.0 ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  60.0 ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  34.06 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  30.85 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  0.32 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  1.24 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  0.39 ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  307.21 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  304.0 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  273.47 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  274.39 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  0.05 ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  -2418.42 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  -2393.15 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  -25.27 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  60.0 ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  80.0 ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  72.5 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  28.48 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  0.4 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  1.26 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  0.67 ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  345.65 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  301.62 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  273.55 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  274.41 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  0.55 ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  -1175.15 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  -1025.47 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  -149.68 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  nan ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  nan ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  nan ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  nan ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  nan ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  nan ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  nan ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  60.0 ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  80.0 ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  40.04 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  30.3 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  0.5 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  0.94 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  0.88 ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  313.19 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  303.45 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  273.65 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  274.09 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  0.12 ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  -357.63 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  -346.51 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  -11.12 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  60.0 ± 0.0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  100.0 ± 0.0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  75.6 ± 0.0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  31.149999999999995 ± 4.351167857633658e-15		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  0.62 ± 0.0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  1.4400000000000002 ± 2.7194799110210365e-16		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  0.61 ± 0.0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  348.75 ± 0.0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  304.3 ± 0.0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  273.77 ± 0.0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  274.59 ± 0.0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  0.44 ± 0.0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  -1456.4399999999998 ± 2.7847474288855413e-13		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  -1270.81 ± 0.0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  -185.63 ± 0.0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  nan ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  nan ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  nan ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  nan ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  nan ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  nan ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  nan ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  nan ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  nan ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  60.0 ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  100.0 ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  60.94 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  30.85 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  0.71 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  1.31 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  0.9 ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  334.09 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  304.0 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  273.86 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  274.46 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  0.3 ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  -319.28 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  -290.53 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  -28.76 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  60.0 ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  120.0 ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  71.2 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  31.12 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  0.81 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  1.36 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  0.68 ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  344.35 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  304.27 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  273.96 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  274.51 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  0.33 ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  -1128.5 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  -997.17 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  -131.33 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  60.0 ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  120.0 ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  70.9 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  31.9 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  0.81 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  1.01 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  0.77 ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  344.05 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  305.05 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  273.96 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  274.16 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  0.32 ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  -773.44 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  -685.77 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  -87.67 ± 0		 [KJ/mol]
+
+
+
+
+--- Optimal Temperature and Pressure ---
+
+--- optimal thermal property at min(dG) ---
+FR		 Optimal:		  60.0 ± 0		 [%]
+--- optimal thermal property at min(dG) ---
+Q		 Optimal:		  120.0 ± 0		 [W]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  38.4 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  31.1 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  0.64 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  1.14 ± 0		 [C]
+--- optimal thermal property at min(dG) ---
+P		 Optimal:		  0.8 ± 0		 [bar]
+--- optimal thermal property at min(dG) ---
+Te_mean		 Optimal:		  311.55 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_mean		 Optimal:		  304.25 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Te_std		 Optimal:		  273.79 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+Tc_std		 Optimal:		  274.29 ± 0		 [K]
+--- optimal thermal property at min(dG) ---
+TR		 Optimal:		  0.06 ± 0		 [K/W]
+--- optimal thermal property at min(dG) ---
+GFE_Te		 Optimal:		  -601.75 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+GFE_Tc		 Optimal:		  -587.65 ± 0		 [KJ/mol]
+--- optimal thermal property at min(dG) ---
+dG		 Optimal:		  -14.1 ± 0		 [KJ/mol]
+
