@@ -243,7 +243,7 @@ def step_get_file_list(di:DataIngestionEngine)->Annotated[list, 'List of Experim
 
 @step
 def step_data_ingestion(file_list:list, di:DataIngestionEngine)->Tuple[Annotated[pd.DataFrame, 'RAW Data Thermal'],
-                                                        Annotated[pd.DataFrame, 'Raw Data Electrical']]:
+                                                        Annotated[pd.DataFrame, 'RAW Data Electrical']]:
     df_t = []
     df_e = []
     for file in file_list:

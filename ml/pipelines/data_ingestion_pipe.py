@@ -91,9 +91,3 @@ def auto_eda_plots(dir_path, database):
     database = plot_TR_vs_Te(dve=dve, data=database)
     text = get_optimal_TP(dve=dve, data=database)
     return text
-
-# data pre-processing pipeline
-
-# ml pipeline
-
-# ml evaluation pipeline

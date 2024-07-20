@@ -13,13 +13,13 @@ class DataProcessingEngine:
     """
     Data Processing Engine is used for various data processing related steps
 
-    loading meta table
+        loading meta table
 
-    slicing data as per meta table and make a experimental database
+        slicing data as per meta table and make a experimental database
 
-    removing garbage data from failed experiments, threshold 1000
+        removing garbage data from failed experiments, threshold 1000
 
-    calculating TR and other Thermal params with the help of PyPulseHeatPipe library
+        calculating TR and other Thermal params with the help of PyPulseHeatPipe library
     
     """
     def __init__(self, dir_path: str):
