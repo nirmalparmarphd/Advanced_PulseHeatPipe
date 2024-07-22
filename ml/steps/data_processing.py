@@ -5,18 +5,21 @@ import sys, os
 from typing import Annotated, Tuple
 from zenml import step
 from PyPulseHeatPipe import PulseHeatPipe
+import numpy as np
+from datetime import datetime, timedelta
+from dateutil import parser
 
 class DataProcessingEngine:
     """
     Data Processing Engine is used for various data processing related steps
 
-    # loading meta table
+        loading meta table
 
-    # slicing data as per meta table and make a experimental database
+        slicing data as per meta table and make a experimental database
 
-    # removing garbage data from failed experiments, threshold 1000
+        removing garbage data from failed experiments, threshold 1000
 
-    # calculating TR and other Thermal params with the help of PyPulseHeatPipe library
+        calculating TR and other Thermal params with the help of PyPulseHeatPipe library
     
     """
     def __init__(self, dir_path: str):
@@ -51,61 +54,99 @@ class DataProcessingEngine:
         return df
     
     def processing_date_time(self, df:pd.DataFrame, 
-                             col:str,
-                             col_date:str,
-                             col_time:str, 
-                             format:str='%d/%m/%Y%H:%M:%S')-> Annotated[pd.DataFrame,'Process DateTime col']:
+                             col:str='date',
+                             col_date:str='DATE',
+                             col_time:str='TIME')-> Annotated[pd.DataFrame,'Process DateTime col']:
         """
         to process date time cols from row data and returns timestamp col for further analysis
 
         args:
             df:pd.DataFrame # experimental raw data
-            col:str # col name output
-            col_date:str
-            col_time:str
+            col:str # col name
             format:str # datetime expected format
+            col_date:str='DATE',
+            col_time:str='TIME'
 
         use:
             df = processing_date_time(df, col, format)
 
         """
-        df[col] = df[col_date] + df[col_time]
-        df[col] = pd.to_datetime(df[col], format=format)
+        # Define a function to parse dates using dateutil.parser
+        def parse_date(date_str):
+            try:
+                #dayfirst=True to handle day/month/year format correctly
+                return parser.parse(date_str, dayfirst=True)
+            except ValueError:
+                return None
+            
+        df[col] = df[col_date].astype(str) + ' ' + df[col_time].astype(str)
+        df[col] = df[col].apply(parse_date)
         return df
+
     
     def data_slicing_combine(self, 
-                             df_meta:pd.DataFrame, 
-                            df_raw_data:pd.DataFrame,
-                            col_start:str='dt_start',
-                            col_stop:str='dt_stop'):
+                            df_meta: pd.DataFrame, 
+                            df_raw_data: pd.DataFrame,
+                            col_start: str='dt_start',
+                            col_stop: str='dt_stop',
+                            max_search_seconds: int=60):
         """
-        to slice data from the clean experimental combined data
+        Slice data from the clean experimental combined data based on column values.
 
-        args:
-            df_meta: pd.DataFrame
-            df_raw_data: pd.DataFrame
-            col_start:str,
-            col_stop:str
+        Args:
+            df_meta: pd.DataFrame containing metadata
+            df_raw_data: pd.DataFrame containing raw data
+            col_start: str, column name for experiment start time (default: 'dt_start')
+            col_stop: str, column name for experiment stop time (default: 'dt_stop')
+            max_search_seconds: int, maximum seconds to incrementally search (default: 60)
 
-        returns:
-            pd.DataFrame
+        Returns:
+            pd.DataFrame: combined DataFrame
         """
-        df_raw_data.set_index('date', inplace=True)
-
         frames = []
-        for _ , row in df_meta.iterrows():
-            experiment_start = row[col_start]
-            experiment_stop = row[col_stop]
-            df_sd = df_raw_data.loc[experiment_start: experiment_stop]
+        for _, row in df_meta.iterrows():
+            # Convert experiment start and stop timestamps to datetime objects
+            experiment_start = pd.to_datetime(row[col_start], format='%d/%m/%Y%H:%M:%S')
+            experiment_stop = pd.to_datetime(row[col_stop], format='%d/%m/%Y%H:%M:%S')
+            
+            # Try to find closest match by incrementally searching up to max_search_seconds
+            found_start = False
+            found_stop = False
+            increment = timedelta(seconds=1)
+            search_time = timedelta(seconds=max_search_seconds)
+            
+            while not (found_start and found_stop) and search_time >= timedelta(seconds=0):
+                # Check if experiment_start is found
+                if any(df_raw_data['date'] == experiment_start):
+                    found_start = True
+                else:
+                    experiment_start += increment
+                
+                # Check if experiment_stop is found
+                if any(df_raw_data['date'] == experiment_stop):
+                    found_stop = True
+                else:
+                    experiment_stop += increment
+                
+                # Decrease the remaining search time
+                search_time -= increment
+            
+            # Slice raw data based on experiment start and stop times
+            df_sd = df_raw_data[(df_raw_data['date'] >= experiment_start) & (df_raw_data['date'] <= experiment_stop)].copy()
+            print(f"Timestamps {experiment_start} or {experiment_stop} found in df_raw_data index.")
+    
+            # Add metadata columns to sliced data
             df_sd['WF'] = row['WF']
             df_sd['FR[%]'] = row['FR [%]']
             df_sd['Q[W]'] = row['Q [W]']
             df_sd['alpha'] = row['alpha']
             df_sd['beta'] = row['beta']
-            frames.append(df_sd)
+            df_sd['pulse'] = row['t_pulse_start']
             
+            frames.append(df_sd)
+        
+        # Concatenate all frames into a single DataFrame
         df_database = pd.concat(frames, ignore_index=True)
-        df_raw_data.reset_index(inplace=True)
 
         return df_database
     
@@ -181,6 +222,7 @@ class DataProcessingEngine:
             fr = row['FR[%]']
             indices_to_drop = filtered_df[(filtered_df['Q[W]'] == q) & (filtered_df['FR[%]'] == fr)].index
             filtered_df = filtered_df.drop(indices_to_drop)
+            filtered_df.fillna(0, inplace=True)
         
         return filtered_df
     
@@ -271,6 +313,31 @@ class DataProcessingEngine:
                                                       to_csv=False)
         return database
     
+    def get_pulse_temperature(self,
+                              database: pd.DataFrame):
+        '''
+        to get a temperature at which pulsation starts
+
+        args:
+            database: pd.DataFrame
+
+        returns:
+            pd.DataFrame
+        '''
+        database['TIME'] = pd.to_datetime(database['TIME'], format='%H:%M:%S').dt.time
+
+        frames = []
+        pulse_time = database['pulse'].unique()
+        for time in pulse_time:
+            df_pt = database[database['TIME']==time]
+            Te_pt = df_pt['Te_mean[K]'].min()
+            db = database[database['pulse']==time]
+            db['T_pulse[K]'] = Te_pt
+            frames.append(db)
+        db = pd.concat(frames, axis=0, ignore_index=True)
+        return db
+
+    
 @step
 def step_initialize_DPE(dir_path:str)->Annotated[DataProcessingEngine, 'Data Processing Engine']:
     dpe = DataProcessingEngine(dir_path=dir_path)
@@ -278,15 +345,15 @@ def step_initialize_DPE(dir_path:str)->Annotated[DataProcessingEngine, 'Data Pro
 
 
 @step
-def step_loading_meta_table(dpe:DataProcessingEngine)->Annotated[pd.DataFrame, 'Meta Table Loaded']:
-    df_meta = dpe.load_meta_table(file_name='meta_table_data.csv')
+def step_loading_meta_table(dpe:DataProcessingEngine, filename:str = 'meta_table_data.csv')->Annotated[pd.DataFrame, 'Meta Table Loaded']:
+    df_meta = dpe.load_meta_table(file_name=filename)
     return df_meta
 
 @step
 def step_meta_data_dt_process(dpe:DataProcessingEngine, 
                               df_meta:pd.DataFrame)->Annotated[pd.DataFrame, 'Meta Table - DT Processed']:
-    df_meta_processed = dpe.processing_date_time(df=df_meta, col='dt_start', col_date='Date', col_time='t_start', format='%d-%m-%Y%H:%M:%S')
-    df_meta_processed = dpe.processing_date_time(df=df_meta, col='dt_stop', col_date='Date', col_time='t_end', format='%d-%m-%Y%H:%M:%S')
+    df_meta_processed = dpe.processing_date_time(df=df_meta, col='dt_start', col_date='Date', col_time='t_start')
+    df_meta_processed = dpe.processing_date_time(df=df_meta, col='dt_stop', col_date='Date', col_time='t_end')
     return df_meta_processed
 
 @step
@@ -295,6 +362,16 @@ def step_database(dpe:DataProcessingEngine,
                   df_raw:pd.DataFrame)->Annotated[pd.DataFrame, 'Experimental DataBase']:
     df_database = dpe.data_slicing_combine(df_meta=df_meta, df_raw_data=df_raw, col_start='dt_start', col_stop='dt_stop')
     return df_database
+
+@step
+def step_processing_dt_col_pulse(dpe:DataProcessingEngine,
+                                 df_database:pd.DataFrame)->Annotated[pd.DataFrame, 'Experimental DataBase with Pulse Col']:
+    database = dpe.processing_date_time(df=df_database,
+                                           col='pulse',
+                                           col_date='DATE',
+                                           col_time='pulse')
+    database['pulse'] = database['pulse'].dt.time
+    return database
 
 @step
 def step_stat_cols(dpe:DataProcessingEngine,
@@ -321,6 +398,12 @@ def step_to_si_units(dpe:DataProcessingEngine,
     return df_database
 
 @step
+def step_adding_pulse_temp(dpe:DataProcessingEngine,
+                                 df_database:pd.DataFrame)->Annotated[pd.DataFrame, 'Experimental DataBase with Pulse Temperature']:
+    database = dpe.get_pulse_temperature(database=df_database)
+    return database
+
+@step
 def step_TR_calculation(dpe:DataProcessingEngine,
                         database:pd.DataFrame)->Annotated[pd.DataFrame, 'Calculating Thermal Resistance']:
     df_database = dpe.get_thermal_resistance(data=database)
@@ -335,5 +418,6 @@ def step_gfe_calculation(dpe:DataProcessingEngine,
 @step
 def step_database_csv(dpe:DataProcessingEngine,
                       df_database:pd.DataFrame)->Annotated[None, 'Saved CSV locally']:
+    df_database = df_database.round(2)
     dpe.database_to_csv(df_database=df_database, op_path=dpe.dir_path)
     return None
