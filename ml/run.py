@@ -24,7 +24,8 @@ def main_pipeline_php(path:str = '../data/'):
                               database=database_generation)
 
     # data pre-processing before ML
-    data_ml = data_preprocessing_pipeline(data_path='../data/database/database.csv')
+    data_ml = data_preprocessing_pipeline(data_path='../data/database/database.csv',
+                                          data=auto_eda)
 
     # ML training and evaluation of ML model
     # random forest regressor

@@ -10,9 +10,12 @@ from steps.data_pre_processing import (step_get_database,
                                        step_initialize_DPPE)
 
 @pipeline(enable_cache=False, name='ML Data Pre Processing')
-def data_preprocessing_pipeline(data_path:str):
+def data_preprocessing_pipeline(data_path:str, data:pd.DataFrame):
     dppe = step_initialize_DPPE(data_path)
-    df = step_get_database(dppe)
+    if data is not None:
+        df = data
+    else:
+        df = step_get_database(dppe)
     data = step_get_features(dppe, df=df)
     return data
 
