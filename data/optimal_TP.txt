@@ -2,7 +2,9 @@
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  60.0 ± 0		 [%]
+ FR(60)-Q(40)-A(90)-B(0)
+
+-FR		 Optimal:		  60.0 ± 0		 [%]
 Q		 Optimal:		  40.0 ± 0		 [W]
 Te_mean		 Optimal:		  70.26 ± 0		 [C]
 Tc_mean		 Optimal:		  32.67 ± 0		 [C]
@@ -24,7 +26,9 @@ dG		 Optimal:		  -194.85 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  60.0 ± 0		 [%]
+ FR(60)-Q(40)-A(30)-B(0)
+
+-FR		 Optimal:		  60.0 ± 0		 [%]
 Q		 Optimal:		  40.0 ± 0		 [W]
 Te_mean		 Optimal:		  35.0 ± 0		 [C]
 Tc_mean		 Optimal:		  31.83 ± 0		 [C]
@@ -46,7 +50,9 @@ dG		 Optimal:		  -7.83 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  60.0 ± 0		 [%]
+ FR(60)-Q(60)-A(90)-B(0)
+
+-FR		 Optimal:		  60.0 ± 0		 [%]
 Q		 Optimal:		  60.0 ± 0		 [W]
 Te_mean		 Optimal:		  36.08 ± 0		 [C]
 Tc_mean		 Optimal:		  30.58 ± 0		 [C]
@@ -68,7 +74,9 @@ dG		 Optimal:		  -2.32 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  60.0 ± 0		 [%]
+ FR(60)-Q(60)-A(30)-B(0)
+
+-FR		 Optimal:		  60.0 ± 0		 [%]
 Q		 Optimal:		  60.0 ± 0		 [W]
 Te_mean		 Optimal:		  34.06 ± 0		 [C]
 Tc_mean		 Optimal:		  30.85 ± 0		 [C]
@@ -90,7 +98,9 @@ dG		 Optimal:		  -25.27 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  60.0 ± 0		 [%]
+ FR(60)-Q(80)-A(90)-B(0)
+
+-FR		 Optimal:		  60.0 ± 0		 [%]
 Q		 Optimal:		  80.0 ± 0		 [W]
 Te_mean		 Optimal:		  72.5 ± 0		 [C]
 Tc_mean		 Optimal:		  28.48 ± 0		 [C]
@@ -112,7 +122,9 @@ dG		 Optimal:		  -149.68 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  60.0 ± 0		 [%]
+ FR(60)-Q(80)-A(30)-B(0)
+
+-FR		 Optimal:		  60.0 ± 0		 [%]
 Q		 Optimal:		  80.0 ± 0		 [W]
 Te_mean		 Optimal:		  40.04 ± 0		 [C]
 Tc_mean		 Optimal:		  30.3 ± 0		 [C]
@@ -134,7 +146,9 @@ dG		 Optimal:		  -11.12 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  60.0 ± 0.0		 [%]
+ FR(60)-Q(100)-A(90)-B(0)
+
+-FR		 Optimal:		  60.0 ± 0.0		 [%]
 Q		 Optimal:		  100.0 ± 0.0		 [W]
 Te_mean		 Optimal:		  75.6 ± 0.0		 [C]
 Tc_mean		 Optimal:		  31.149999999999995 ± 4.351167857633658e-15		 [C]
@@ -156,7 +170,9 @@ dG		 Optimal:		  -185.63 ± 0.0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  60.0 ± 0		 [%]
+ FR(60)-Q(100)-A(30)-B(0)
+
+-FR		 Optimal:		  60.0 ± 0		 [%]
 Q		 Optimal:		  100.0 ± 0		 [W]
 Te_mean		 Optimal:		  60.94 ± 0		 [C]
 Tc_mean		 Optimal:		  30.85 ± 0		 [C]
@@ -178,7 +194,9 @@ dG		 Optimal:		  -28.76 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  60.0 ± 0		 [%]
+ FR(60)-Q(120)-A(90)-B(0)
+
+-FR		 Optimal:		  60.0 ± 0		 [%]
 Q		 Optimal:		  120.0 ± 0		 [W]
 Te_mean		 Optimal:		  71.2 ± 0		 [C]
 Tc_mean		 Optimal:		  31.12 ± 0		 [C]
@@ -200,7 +218,9 @@ dG		 Optimal:		  -131.33 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  60.0 ± 0		 [%]
+ FR(60)-Q(120)-A(60)-B(0)
+
+-FR		 Optimal:		  60.0 ± 0		 [%]
 Q		 Optimal:		  120.0 ± 0		 [W]
 Te_mean		 Optimal:		  70.9 ± 0		 [C]
 Tc_mean		 Optimal:		  31.9 ± 0		 [C]
@@ -222,7 +242,9 @@ dG		 Optimal:		  -87.67 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  60.0 ± 0		 [%]
+ FR(60)-Q(120)-A(30)-B(0)
+
+-FR		 Optimal:		  60.0 ± 0		 [%]
 Q		 Optimal:		  120.0 ± 0		 [W]
 Te_mean		 Optimal:		  38.4 ± 0		 [C]
 Tc_mean		 Optimal:		  31.1 ± 0		 [C]
@@ -244,7 +266,9 @@ dG		 Optimal:		  -14.1 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  40.0 ± 0		 [%]
+ FR(40)-Q(40)-A(90)-B(0)
+
+-FR		 Optimal:		  40.0 ± 0		 [%]
 Q		 Optimal:		  40.0 ± 0		 [W]
 Te_mean		 Optimal:		  80.36 ± 0		 [C]
 Tc_mean		 Optimal:		  32.22 ± 0		 [C]
@@ -266,7 +290,9 @@ dG		 Optimal:		  -264.56 ± 0		 [KJ/mol]
 
 --- Optimal Temperature and Pressure ---
 
-FR		 Optimal:		  40.0 ± 0.0		 [%]
+ FR(40)-Q(60)-A(90)-B(0)
+
+-FR		 Optimal:		  40.0 ± 0.0		 [%]
 Q		 Optimal:		  60.0 ± 0.0		 [W]
 Te_mean		 Optimal:		  87.58 ± 0.0		 [C]
 Tc_mean		 Optimal:		  32.83 ± 0.0		 [C]

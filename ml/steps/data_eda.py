@@ -114,7 +114,7 @@ class DataVisualizationEngine:
                         df = data[(data['FR[%]'] == fr) & (data['Q[W]'] == q) & (data['alpha'] == a) & (data['beta'] == b)]
                         if not df.empty:
                             best_tp = self.dv.best_TP(data=df, decimals=2)
-                            msg = f'\n\n--- Optimal Temperature and Pressure ---\n\n{best_tp}\n\n'
+                            msg = f'\n\n--- Optimal Temperature and Pressure ---\n\n FR({fr})-Q({q})-A({a})-B({b})\n\n-{best_tp}\n\n'
                             msgs.append(msg)
                             msgs_text = '\n'.join(msgs)
                         else:
