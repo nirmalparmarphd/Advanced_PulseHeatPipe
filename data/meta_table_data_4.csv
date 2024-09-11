@@ -1,6 +1,2 @@
 experiment name,Date,t_start,t_pulse_start,t_end,WF,FR [%],Q [W],alpha,beta
-php,,,,,DI water,60,40,30,0
-php,,,,,DI water,60,60,30,0
 php,08-09-2024,18:15:40,18:29:17,19:14:00,DI water,60,80,30,0
-php,,,,,DI water,60,100,30,0
-php,,,,,DI water,60,120,30,0
