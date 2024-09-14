@@ -1,0 +1,440 @@
+(.venv) D:\Phd\php_pulsating_heat_pipe\Krp_Analysis\Advanced_PulseHeatPipe_krp\ml>python run.py
+Initiating a new run for the pipeline: main_pipeline_php.
+Reusing registered pipeline version: (version: 3).
+Executing a new run.
+Caching is disabled by default for main_pipeline_php.
+Using user: default
+Using stack: default
+  orchestrator: default
+  artifact_store: default
+You can visualize your pipeline runs in the ZenML Dashboard. In order to try it locally, please run zenml up.
+Step step_initialization_DIE has started.
+No materializer is registered for type <class 'steps.data_ingestion.DataIngestionEngine'>, so the default Pickle materializer was used. Pickle is not production ready and should only be used for prototyping as the artifacts cannot be loaded when running with a different Python version. Please consider implementing a custom materializer for type <class 'steps.data_ingestion.DataIngestionEngine'> according to the instructions at https://docs.zenml.io/how-to/handle-data-artifacts/handle-custom-data-types      
+Step step_initialization_DIE has finished in 0.741s.
+Step step_initialization_DIE completed successfully.
+Step step_initialization_DVE has started.
+Directory '../data/plots' already exists.
+         --- set default params ---
+            Temperature constant (Kelvin conversion):       273.15      [K]
+            Pressure constant (bar conversion):             1.013       [bar]
+            Real gas constant:                              8.314       [J/Kmol]
+            Change in Gibbs Free Energy of water:           30.9        [KJ/mol]
+            Standard pressure:                              1.013       [bar]
+            verbose:                                        True
+
+
+
+Directory path loaded for working directory: '../data/plots'
+
+Sample name saved as: 'DI_Water'
+No materializer is registered for type <class 'steps.data_eda.DataVisualizationEngine'>, so the default Pickle materializer was 
+used. Pickle is not production ready and should only be used for prototyping as the artifacts cannot be loaded when running with a different Python version. Please consider implementing a custom materializer for type <class 'steps.data_eda.DataVisualizationEngine'> according to the instructions at https://docs.zenml.io/how-to/handle-data-artifacts/handle-custom-data-types
+Step step_initialization_DVE has finished in 0.812s.
+Step step_initialization_DVE completed successfully.
+Step step_initialize_DPE has started.
+No materializer is registered for type <class 'steps.data_processing.DataProcessingEngine'>, so the default Pickle materializer 
+was used. Pickle is not production ready and should only be used for prototyping as the artifacts cannot be loaded when running 
+with a different Python version. Please consider implementing a custom materializer for type <class 'steps.data_processing.DataProcessingEngine'> according to the instructions at https://docs.zenml.io/how-to/handle-data-artifacts/handle-custom-data-types  
+Step step_initialize_DPE has finished in 0.485s.
+Step step_initialize_DPE completed successfully.
+Step step_initialize_DPPE has started.
+No materializer is registered for type <class 'steps.data_pre_processing.DataPreProcessingEngine'>, so the default Pickle materializer was used. Pickle is not production ready and should only be used for prototyping as the artifacts cannot be loaded when running with a different Python version. Please consider implementing a custom materializer for type <class 'steps.data_pre_processing.DataPreProcessingEngine'> according to the instructions at https://docs.zenml.io/how-to/handle-data-artifacts/handle-custom-data-types
+Step step_initialize_DPPE has finished in 0.510s.
+Step step_initialize_DPPE completed successfully.
+Step step_model_selection has started.
+Step step_model_selection has finished in 1.885s.
+Step step_model_selection completed successfully.
+Step step_model_selection_2 has started.
+Step step_model_selection_2 has finished in 0.592s.
+Step step_model_selection_2 completed successfully.
+Step step_get_database has started.
+Step step_get_database has finished in 1.848s.
+Step step_get_database completed successfully.
+Step step_get_file_list has started.
+Step step_get_file_list has finished in 0.765s.
+Step step_get_file_list completed successfully.
+Step step_loading_meta_table has started.
+Step step_loading_meta_table has finished in 1.869s.
+Step step_loading_meta_table completed successfully.
+Step step_data_ingestion has started.
+Step step_data_ingestion has finished in 15.518s.
+Step step_data_ingestion completed successfully.
+Step step_get_features has started.
+Step step_get_features has finished in 3.132s.
+Step step_get_features completed successfully.
+Step step_meta_data_dt_process has started.
+Step step_meta_data_dt_process has finished in 1.287s.
+Step step_meta_data_dt_process completed successfully.
+Step step_electrical_data_dt_process has started.
+Step step_electrical_data_dt_process has finished in 13.755s.
+Step step_electrical_data_dt_process completed successfully.
+Step step_thermal_data_dt_process has started.
+Step step_thermal_data_dt_process has finished in 13.783s.
+Step step_thermal_data_dt_process completed successfully.
+Step step_xy_split has started.
+Step step_xy_split has finished in 2.692s.
+Step step_xy_split completed successfully.
+Step step_xy_split_2 has started.
+Step step_xy_split_2 has finished in 2.571s.
+Step step_xy_split_2 completed successfully.
+Step step_data_join has started.
+Step step_data_join has finished in 5.330s.
+Step step_data_join completed successfully.
+Step step_train_test_splitter has started.
+Step step_train_test_splitter has finished in 8.688s.
+Step step_train_test_splitter completed successfully.
+Step step_train_test_splitter_2 has started.
+Step step_train_test_splitter_2 has finished in 5.749s.
+Step step_train_test_splitter_2 completed successfully.
+Step step_cleaning_data has started.
+Step step_cleaning_data has finished in 3.478s.
+Step step_cleaning_data completed successfully.
+Step step_model_training has started.
+Step step_model_training has finished in 3.732s.
+Step step_model_training completed successfully.
+Step step_model_training_2 has started.
+Step step_model_training_2 has finished in 2.118s.
+Step step_model_training_2 completed successfully.
+Step step_database has started.
+Timestamps 2024-04-04 11:32:06 or 2024-04-04 12:35:00 found in df_raw_data index.
+Timestamps 2024-04-03 12:55:23 or 2024-04-03 13:51:26 found in df_raw_data index.
+Timestamps 2024-03-21 14:07:55 or 2024-03-21 15:34:01 found in df_raw_data index.
+Timestamps 2024-03-21 17:12:34 or 2024-03-21 18:20:01 found in df_raw_data index.
+Timestamps 2024-04-04 16:32:36 or 2024-04-04 17:35:01 found in df_raw_data index.
+Step step_database has finished in 2.180s.
+Step step_database completed successfully.
+Step step_model_prediction has started.
+Step step_model_prediction has finished in 1.554s.
+Step step_model_prediction completed successfully.
+Step step_model_prediction_2 has started.
+Step step_model_prediction_2 has finished in 1.279s.
+Step step_model_prediction_2 completed successfully.
+Step step_model_evaluation_r2 has started.
+R2: 0.9998476935962815
+Step step_model_evaluation_r2 has finished in 0.728s.
+Step step_model_evaluation_r2 completed successfully.
+Step step_model_evaluation_r2_2 has started.
+R2: 0.9585208187700944
+Step step_model_evaluation_r2_2 has finished in 0.579s.
+Step step_model_evaluation_r2_2 completed successfully.
+Step step_model_evaluation_rmse has started.
+RMSE: 1.5875575916230368e-05
+Step step_model_evaluation_rmse has finished in 2.212s.
+Step step_model_evaluation_rmse completed successfully.
+Step step_model_evaluation_rmse_2 has started.
+RMSE: 0.004323560103063043
+Step step_model_evaluation_rmse_2 has finished in 0.735s.
+Step step_model_evaluation_rmse_2 completed successfully.
+Step step_processing_dt_col_pulse has started.
+Step step_processing_dt_col_pulse has finished in 2.968s.
+Step step_processing_dt_col_pulse completed successfully.
+Step step_stat_cols has started.
+Step step_stat_cols has finished in 1.456s.
+Step step_stat_cols completed successfully.
+Step step_dropping_garbage_date has started.
+Step step_dropping_garbage_date has finished in 1.679s.
+Step step_dropping_garbage_date completed successfully.
+Step step_to_abs_pressure has started.
+Step step_to_abs_pressure has finished in 1.335s.
+Step step_to_abs_pressure completed successfully.
+Step step_to_si_units has started.
+         --- set default params ---
+            Temperature constant (Kelvin conversion):       273.15      [K]
+            Pressure constant (bar conversion):             1.013       [bar]
+            Real gas constant:                              8.314       [J/Kmol]
+            Change in Gibbs Free Energy of water:           30.9        [KJ/mol]
+            Standard pressure:                              1.013       [bar]
+            verbose:                                        True
+
+
+
+Directory path loaded for working directory: '../data/'
+
+Sample name saved as: 'DI_Water'
+Step step_to_si_units has finished in 1.554s.
+Step step_to_si_units completed successfully.
+Step step_adding_pulse_temp has started.
+D:\Phd\php_pulsating_heat_pipe\Krp_Analysis\Advanced_PulseHeatPipe_krp\ml\steps\data_processing.py:335: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  db['T_pulse[K]'] = Te_pt
+D:\Phd\php_pulsating_heat_pipe\Krp_Analysis\Advanced_PulseHeatPipe_krp\ml\steps\data_processing.py:335: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  db['T_pulse[K]'] = Te_pt
+D:\Phd\php_pulsating_heat_pipe\Krp_Analysis\Advanced_PulseHeatPipe_krp\ml\steps\data_processing.py:335: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  db['T_pulse[K]'] = Te_pt
+D:\Phd\php_pulsating_heat_pipe\Krp_Analysis\Advanced_PulseHeatPipe_krp\ml\steps\data_processing.py:335: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  db['T_pulse[K]'] = Te_pt
+D:\Phd\php_pulsating_heat_pipe\Krp_Analysis\Advanced_PulseHeatPipe_krp\ml\steps\data_processing.py:335: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  db['T_pulse[K]'] = Te_pt
+Step step_adding_pulse_temp has finished in 1.398s.
+Step step_adding_pulse_temp completed successfully.
+Step step_TR_calculation has started.
+         --- set default params ---
+            Temperature constant (Kelvin conversion):       273.15      [K]
+            Pressure constant (bar conversion):             1.013       [bar]
+            Real gas constant:                              8.314       [J/Kmol]
+            Change in Gibbs Free Energy of water:           30.9        [KJ/mol]
+            Standard pressure:                              1.013       [bar]
+            verbose:                                        True
+
+
+
+Directory path loaded for working directory: '../data/'
+
+Sample name saved as: 'DI_Water'
+Step step_TR_calculation has finished in 1.418s.
+Step step_TR_calculation completed successfully.
+Step step_gfe_calculation has started.
+         --- set default params ---
+            Temperature constant (Kelvin conversion):       273.15      [K]
+            Pressure constant (bar conversion):             1.013       [bar]
+            Real gas constant:                              8.314       [J/Kmol]
+            Change in Gibbs Free Energy of water:           30.9        [KJ/mol]
+            Standard pressure:                              1.013       [bar]
+            verbose:                                        True
+
+
+
+Directory path loaded for working directory: '../data/'
+
+Sample name saved as: 'DI_Water'
+Step step_gfe_calculation has finished in 2.663s.
+Step step_gfe_calculation completed successfully.
+Step plot_dG_vs_P has started.
+FR 60
+Q 40
+alpha 90, beta 0
+Q 60
+alpha 90, beta 0
+Q 80
+alpha 90, beta 0
+Q 100
+alpha 90, beta 0
+Q 120
+alpha 90, beta 0
+plot saved as "../data/plots/FR60_Q120_A90_B0_DI_Water_P_vs_dG.pdf"
+completed auto plotting.
+Step plot_dG_vs_P has finished in 5.278s.
+Step plot_dG_vs_P completed successfully.
+Step step_database_csv has started.
+Step step_database_csv has finished in 1.350s.
+Step step_database_csv completed successfully.
+Step plot_dG_vs_Te has started.
+FR 60
+Q 40
+alpha 90, beta 0
+Q 60
+alpha 90, beta 0
+Q 80
+alpha 90, beta 0
+Q 100
+alpha 90, beta 0
+Q 120
+alpha 90, beta 0
+plot saved as "../data/plots/FR60_Q120_A90_B0_DI_Water_Te_mean_vs_dG.pdf"
+completed auto plotting.
+Step plot_dG_vs_Te has finished in 3.312s.
+Step plot_dG_vs_Te completed successfully.
+Step plot_dG_vs_TR has started.
+FR 60
+Q 40
+alpha 90, beta 0
+Q 60
+alpha 90, beta 0
+Q 80
+alpha 90, beta 0
+Q 100
+alpha 90, beta 0
+Q 120
+alpha 90, beta 0
+plot saved as "../data/plots/FR60_Q120_A90_B0_DI_Water_TR_vs_dG.pdf"
+completed auto plotting.
+Step plot_dG_vs_TR has finished in 2.155s.
+Step plot_dG_vs_TR completed successfully.
+Step plot_P_vs_Te has started.
+FR 60
+Q 40
+alpha 90, beta 0
+Q 60
+alpha 90, beta 0
+Q 80
+alpha 90, beta 0
+Q 100
+alpha 90, beta 0
+Q 120
+alpha 90, beta 0
+plot saved as "../data/plots/FR60_Q120_A90_B0_DI_Water_Te_mean_vs_P.pdf"
+completed auto plotting.
+Step plot_P_vs_Te has finished in 2.813s.
+Step plot_P_vs_Te completed successfully.
+Step plot_Tc_vs_Te has started.
+FR 60
+Q 40
+alpha 90, beta 0
+Q 60
+alpha 90, beta 0
+Q 80
+alpha 90, beta 0
+Q 100
+alpha 90, beta 0
+Q 120
+alpha 90, beta 0
+plot saved as "../data/plots/FR60_Q120_A90_B0_DI_Water_Te_mean_vs_Tc_mean.pdf"
+completed auto plotting.
+Step plot_Tc_vs_Te has finished in 3.043s.
+Step plot_Tc_vs_Te completed successfully.
+Step plot_TR_vs_Q has started.
+FR 60
+Q 40
+alpha 90, beta 0
+Q 60
+alpha 90, beta 0
+Q 80
+alpha 90, beta 0
+Q 100
+alpha 90, beta 0
+Q 120
+alpha 90, beta 0
+plot saved as "../data/plots/FR60_Q120_A90_B0_DI_Water_Q_vs_TR.pdf"
+completed auto plotting.
+Step plot_TR_vs_Q has finished in 3.721s.
+Step plot_TR_vs_Q completed successfully.
+Step plot_TR_vs_Te has started.
+FR 60
+Q 40
+alpha 90, beta 0
+Q 60
+alpha 90, beta 0
+Q 80
+alpha 90, beta 0
+Q 100
+alpha 90, beta 0
+Q 120
+alpha 90, beta 0
+plot saved as "../data/plots/FR60_Q120_A90_B0_DI_Water_Te_mean_vs_TR.pdf"
+completed auto plotting.
+Step plot_TR_vs_Te has finished in 3.361s.
+Step plot_TR_vs_Te completed successfully.
+Step get_optimal_TP has started.
+FR 60
+Q 40
+alpha 90, beta 0
+--- optimal thermal property at min(dG) ---
+FR               Optimal:                 60.0 ± 0               [%]
+Q                Optimal:                 40.0 ± 0               [W]
+Te_mean          Optimal:                 70.26 ± 0              [C]
+Tc_mean          Optimal:                 32.67 ± 0              [C]
+Te_std           Optimal:                 0.34 ± 0               [C]
+Tc_std           Optimal:                 1.25 ± 0               [C]
+P                Optimal:                 0.54 ± 0               [bar]
+Te_mean          Optimal:                 343.41 ± 0             [K]
+Tc_mean          Optimal:                 305.82 ± 0             [K]
+Te_std           Optimal:                 273.49 ± 0             [K]
+Tc_std           Optimal:                 274.4 ± 0              [K]
+T_pulse          Optimal:                 340.31 ± 0             [K]
+TR               Optimal:                 0.94 ± 0               [K/W]
+GFE_Te           Optimal:                 -1780.34 ± 0           [KJ/mol]
+GFE_Tc           Optimal:                 -1585.49 ± 0           [KJ/mol]
+dG               Optimal:                 -194.85 ± 0            [KJ/mol]
+Q 60
+alpha 90, beta 0
+--- optimal thermal property at min(dG) ---
+FR               Optimal:                 60.0 ± 0               [%]
+Q                Optimal:                 60.0 ± 0               [W]
+Te_mean          Optimal:                 58.38 ± 0              [C]
+Tc_mean          Optimal:                 32.95 ± 0              [C]
+Te_std           Optimal:                 0.42 ± 0               [C]
+Tc_std           Optimal:                 1.37 ± 0               [C]
+P                Optimal:                 0.85 ± 0               [bar]
+Te_mean          Optimal:                 331.53 ± 0             [K]
+Tc_mean          Optimal:                 306.1 ± 0              [K]
+Te_std           Optimal:                 273.57 ± 0             [K]
+Tc_std           Optimal:                 274.52 ± 0             [K]
+T_pulse          Optimal:                 0.0 ± 0                [K]
+TR               Optimal:                 0.42 ± 0               [K/W]
+GFE_Te           Optimal:                 -473.85 ± 0            [KJ/mol]
+GFE_Tc           Optimal:                 -437.5 ± 0             [KJ/mol]
+dG               Optimal:                 -36.35 ± 0             [KJ/mol]
+Q 80
+alpha 90, beta 0
+--- optimal thermal property at min(dG) ---
+FR               Optimal:                 60.0 ± 0               [%]
+Q                Optimal:                 80.0 ± 0               [W]
+Te_mean          Optimal:                 72.5 ± 0               [C]
+Tc_mean          Optimal:                 28.48 ± 0              [C]
+Te_std           Optimal:                 0.4 ± 0                [C]
+Tc_std           Optimal:                 1.26 ± 0               [C]
+P                Optimal:                 0.67 ± 0               [bar]
+Te_mean          Optimal:                 345.65 ± 0             [K]
+Tc_mean          Optimal:                 301.62 ± 0             [K]
+Te_std           Optimal:                 273.55 ± 0             [K]
+Tc_std           Optimal:                 274.41 ± 0             [K]
+T_pulse          Optimal:                 0.0 ± 0                [K]
+TR               Optimal:                 0.55 ± 0               [K/W]
+GFE_Te           Optimal:                 -1175.15 ± 0           [KJ/mol]
+GFE_Tc           Optimal:                 -1025.47 ± 0           [KJ/mol]
+dG               Optimal:                 -149.68 ± 0            [KJ/mol]
+Q 100
+alpha 90, beta 0
+--- optimal thermal property at min(dG) ---
+FR               Optimal:                 60.0 ± 0.0             [%]
+Q                Optimal:                 100.0 ± 0.0            [W]
+Te_mean          Optimal:                 75.6 ± 0.0             [C]
+Tc_mean          Optimal:                 31.149999999999995 ± 4.351167857633658e-15             [C]
+Te_std           Optimal:                 0.62 ± 0.0             [C]
+Tc_std           Optimal:                 1.4400000000000002 ± 2.7194799110210365e-16            [C]
+P                Optimal:                 0.61 ± 0.0             [bar]
+Te_mean          Optimal:                 348.75 ± 0.0           [K]
+Tc_mean          Optimal:                 304.3 ± 0.0            [K]
+Te_std           Optimal:                 273.77 ± 0.0           [K]
+Tc_std           Optimal:                 274.59 ± 0.0           [K]
+T_pulse          Optimal:                 371.29 ± 0.0           [K]
+TR               Optimal:                 0.44 ± 0.0             [K/W]
+GFE_Te           Optimal:                 -1456.4399999999998 ± 2.7847474288855413e-13           [KJ/mol]
+GFE_Tc           Optimal:                 -1270.81 ± 0.0                 [KJ/mol]
+dG               Optimal:                 -185.63 ± 0.0          [KJ/mol]
+Q 120
+alpha 90, beta 0
+--- optimal thermal property at min(dG) ---
+FR               Optimal:                 60.0 ± 0               [%]
+Q                Optimal:                 120.0 ± 0              [W]
+Te_mean          Optimal:                 71.2 ± 0               [C]
+Tc_mean          Optimal:                 31.12 ± 0              [C]
+Te_std           Optimal:                 0.81 ± 0               [C]
+Tc_std           Optimal:                 1.36 ± 0               [C]
+P                Optimal:                 0.68 ± 0               [bar]
+Te_mean          Optimal:                 344.35 ± 0             [K]
+Tc_mean          Optimal:                 304.27 ± 0             [K]
+Te_std           Optimal:                 273.96 ± 0             [K]
+Tc_std           Optimal:                 274.51 ± 0             [K]
+T_pulse          Optimal:                 0.0 ± 0                [K]
+TR               Optimal:                 0.33 ± 0               [K/W]
+GFE_Te           Optimal:                 -1128.5 ± 0            [KJ/mol]
+GFE_Tc           Optimal:                 -997.17 ± 0            [KJ/mol]
+dG               Optimal:                 -131.33 ± 0            [KJ/mol]
+Step get_optimal_TP has finished in 2.727s.
+Step get_optimal_TP completed successfully.
+Pipeline run has finished in 2m58s.
+
+
+
+
+

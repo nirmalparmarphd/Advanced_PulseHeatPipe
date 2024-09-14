@@ -17,7 +17,7 @@ def main_pipeline_php(path:str = '../data/'):
     # with help of the experimental metal table selecting/filtering data, combining, and cleaning
     database_generation = database_generation_pipeline(dir_path=path, 
                                                        database=data_ingestion, 
-                                                       filename='meta_table_data.csv')
+                                                       filename='meta_table_data_4.csv')
 
     # auto generation of plots for selected thermal properties using PyPulseHeatPipe
     auto_eda = auto_eda_plots(dir_path=path, 
@@ -31,7 +31,7 @@ def main_pipeline_php(path:str = '../data/'):
     # random forest regressor
     rmse_rfr, r2_rfr = machine_learning_pipeline(data=data_ml, model_name='rfr')
     # # ada boost regressors
-    # rmse_abr, r2_abr = machine_learning_pipeline(data=data_ml, model_name='abr')  
+    rmse_abr, r2_abr = machine_learning_pipeline(data=data_ml, model_name='abr')  
 
     # auto generation of plots for ML-experimental data
 
