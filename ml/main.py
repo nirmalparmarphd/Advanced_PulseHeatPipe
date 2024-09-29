@@ -33,3 +33,6 @@ async def trigger_ml_pipeline(experiment_name: str = 'PHP 2',
                                 experiment_name = experiment_name,
                                 description = experiment_description)
     return results
+
+# run this in terminal
+# fastapi dev main.py
