@@ -13,16 +13,23 @@ app = FastAPI(title="Pulsating Heat Pipe - Advanced Data Analytics and Machine L
 website - www.nirmalparmar.info \n
 mail - nirmalparmarphd@gmail.com
 
-    Author - Dr.Nirmal Parmar, PhD
+    Author - Dr. Nirmal Parmar, PhD
 """)
 
-@app.get("/items/{ml_model}")
-async def trigger_ml_pipeline(ml_model: ModelSelection = 'Random Forest Regressor',
-                               data_path: str = "../data/",
-                               meta_file: str = "meta_table_data.csv",
+@app.get("/models/{experiment_name}",
+         description="Advanced data analysis and machine learning interface")
+async def trigger_ml_pipeline(experiment_name: str = 'PHP 2',
+                              experiment_description: str | None=None,
+                              ml_model: ModelSelection = 'Random Forest Regressor',
+                               experimental_data_path: str = "../data/",
+                               meta_data_filename: str = "meta_table_data.csv",
                                ):
-
-    results = main_pipeline_php(path = data_path,
-                                meta_table = meta_file,
-                                ml_model = ml_model)
+    """
+    Advanced analysis and ML trigger
+    """
+    results = main_pipeline_php(path = experimental_data_path,
+                                meta_table = meta_data_filename,
+                                ml_model = ml_model,
+                                experiment_name = experiment_name,
+                                description = experiment_description)
     return results
